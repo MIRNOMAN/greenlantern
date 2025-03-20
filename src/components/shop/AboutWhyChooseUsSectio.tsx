@@ -8,12 +8,11 @@ import choose_image_1 from "@/assets/Home/2149178697.jpg"
 import choose_image_2 from "@/assets/Home/15871.jpg"
 import { Star } from 'lucide-react'
 
-export default function WhyChooseUsSection() {
+export default function AboutWhyChooseUsSectio() {
   return (
-    <div className='bg-[#682D70] '>
-      <div className="mx-auto container px-4 md:py-[100px] py-10 flex flex-col lg:flex-row md:gap-12">
+    <div className="container mx-auto px-4 md:py-[100px] py-10 flex flex-col lg:flex-row md:gap-12">
       {/* Left side images */}
-      <div className="relative  flex-1 min-h-[500px]">
+      <div className="relative flex-1 min-h-[500px]">
         {/* Top left image - team collaborating */}
         <div className="absolute top-0 left-0 md:w-[75%] md:h-[70%] w-[48%] h-[60%] rounded-lg overflow-hidden z-10">
           <Image
@@ -88,20 +87,20 @@ export default function WhyChooseUsSection() {
       <div className="flex-1">
         <div className="mb-2 flex border w-[180px]  justify-center p-1 rounded-2xl border-[#ECECEC] items-center">
           <div className="w-1.5 h-1.5 rounded-full bg-[#F5E663] mr-2"></div>
-          <span className="text-white text-base font-normal leading-4">Why Choose Us</span>
+          <span className="text-black text-base font-normal leading-4">Why Choose Us</span>
         </div>
 
-        <h2 className=" mt-[14px] text-3xl md:mr-[20%] md:text-[56px] font-semibold md:leading-[64px]   text-[#F5E663] ">
+        <h2 className=" mt-[14px] text-3xl md:mr-[20%] md:text-[56px] font-semibold md:leading-[64px]   text-[#682D70] ">
         Why Choose Us?
         </h2>
 
-        <p className=" md:text-[18px] text-white font-normal md:mr-[15%] mt-[24px] tracking-[-2%] md:leading-[28px] leading-relaxed">
+        <p className=" md:text-[18px] text-[#343333] font-normal md:mr-[15%] mt-[24px] tracking-[-2%] md:leading-[28px] leading-relaxed">
         Credentialing can be a long and complex process, but we are here to change that. Our platform streamlines every step, from data collection to manual submission, all while keeping you updated with a real-time tracker. With a focus on compliance and transparency.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:mr-[20%] mt-[40px] border border-[#ECECEC] rounded-2xl p-[32px] gap-x-6 gap-y-4 mb-8">
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-[#FFF2EE] flex items-center justify-center flex-shrink-0">
             <Image
                 src={choose_icon}
                 alt="Client 1"
@@ -110,11 +109,11 @@ export default function WhyChooseUsSection() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-white text-sm">Streamlined Process</span>
+            <span className="text-gray-700 text-sm">Streamlined Process</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-[#FFF2EE] flex items-center justify-center flex-shrink-0">
             <Image
                src={choose_icon}
                 alt="Client 1"
@@ -123,11 +122,11 @@ export default function WhyChooseUsSection() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-white text-sm">No Hidden Fees</span>
+            <span className="text-gray-700 text-sm">No Hidden Fees</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full  flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-[#FFF2EE] flex items-center justify-center flex-shrink-0">
               <Image
                src={choose_icon}
                 alt="Client 1"
@@ -136,11 +135,11 @@ export default function WhyChooseUsSection() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-white text-sm">No Paperwork Hassles</span>
+            <span className="text-gray-700 text-sm">No Paperwork Hassles</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full  flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-[#FFF2EE] flex items-center justify-center flex-shrink-0">
             <Image
                src={choose_icon}
                 alt="Client 1"
@@ -149,11 +148,11 @@ export default function WhyChooseUsSection() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-white text-sm">Easy Document Upload</span>
+            <span className="text-gray-700 text-sm">Easy Document Upload</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full  flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-[#FFF2EE] flex items-center justify-center flex-shrink-0">
             <Image
               src={choose_icon}
                 alt="Client 1"
@@ -162,11 +161,11 @@ export default function WhyChooseUsSection() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-white text-sm">Dedicated Account Manager</span>
+            <span className="text-gray-700 text-sm">Dedicated Account Manager</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full  flex items-center justify-center flex-shrink-0">
+            <div className="w-6 h-6 rounded-full bg-[#FFF2EE] flex items-center justify-center flex-shrink-0">
             <Image
                src={choose_icon}
                 alt="Client 1"
@@ -175,7 +174,7 @@ export default function WhyChooseUsSection() {
                 className="rounded-full"
               />
             </div>
-            <span className="text-white text-sm">Expert Credentialing Team</span>
+            <span className="text-gray-700 text-sm">Expert Credentialing Team</span>
           </div>
         </div>
 
@@ -183,7 +182,6 @@ export default function WhyChooseUsSection() {
         Contact Us
         </button>
       </div>
-    </div>
     </div>
   )
 }

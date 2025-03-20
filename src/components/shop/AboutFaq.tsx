@@ -5,12 +5,12 @@ import { ArrowUp, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import backround_image from "@/assets/Backround/Bright Classroom Setup 1.png";
 import backround_icon from "@/assets/Backround/Logo (3).png";
-import  ContactUsToday from "@/components/Home/ContactUsToday"
 
 
-export default function Faq() {
+
+export default function AboutFaq() {
   return (
-    <div className=" mx-auto px-4 md:px-0 md:py-[100px] py-10">
+    <div className=" mx-auto px-4 md:py-[100px] py-10">
       <div className="flex container mx-auto border w-[80px] justify-center border-[#ECECEC] rounded-2xl items-center">
         <span className="h-1.5 w-1.5 rounded-full bg-[#F5E663]"></span>
         <span className="ml-2 text-black font-normal-">FAQ</span>
@@ -22,7 +22,7 @@ export default function Faq() {
       </div>
 
       <FAQSection />
-      <ContactUsToday/>
+  
 
       <div className="relative container md:mt-[100px] rounded-lg overflow-hidden">
         <Image
