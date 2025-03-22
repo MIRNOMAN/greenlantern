@@ -7,13 +7,14 @@ import man_image3 from "@/assets/Home/icons/Ellipse 5.png"
 import choose_image_1 from "@/assets/Home/2149178697.jpg"
 import choose_image_2 from "@/assets/Home/15871.jpg"
 import { Star } from 'lucide-react'
+import Link from 'next/link'
 
 export default function WhyChooseUsSection() {
   return (
     <div className='bg-[#682D70] '>
       <div className="mx-auto container px-4 md:py-[100px] py-10 flex flex-col lg:flex-row md:gap-12">
       {/* Left side images */}
-      <div className="relative  flex-1 min-h-[500px]">
+      <div className="relative  flex-1 min-h-[500px] ">
         {/* Top left image - team collaborating */}
         <div className="absolute top-0 left-0 md:w-[75%] md:h-[70%] w-[48%] h-[60%] rounded-lg overflow-hidden z-10">
           <Image
@@ -91,7 +92,7 @@ export default function WhyChooseUsSection() {
           <span className="text-white text-base font-normal leading-4">Why Choose Us</span>
         </div>
 
-        <h2 className=" mt-[14px] text-3xl md:mr-[20%] md:text-[56px] font-semibold md:leading-[64px]   text-[#F5E663] ">
+        <h2 className=" md:mt-[14px] text-3xl md:mr-[20%] md:text-[56px] font-semibold md:leading-[64px]   text-[#F5E663] ">
         Why Choose Us?
         </h2>
 
@@ -179,9 +180,11 @@ export default function WhyChooseUsSection() {
           </div>
         </div>
 
-        <button className="bg-[#F5E663] text-black font-medium py-3 px-8 rounded-full hover:bg-[#d3c862] transition-colors text-sm">
+       <Link href="/contact">
+       <button className="bg-[#F5E663] text-black font-medium py-3 px-8 rounded-full hover:bg-[#d3c862] transition-colors text-sm">
         Contact Us
         </button>
+       </Link>
       </div>
     </div>
     </div>

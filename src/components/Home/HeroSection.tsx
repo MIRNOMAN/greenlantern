@@ -37,7 +37,7 @@ export default function HeroSection() {
 
           {/* CTA Button */}
           <Link
-            href="/signup"
+            href="/contact"
             className="inline-block bg-[#F5E663] text-black md:text-[16px] leading-[18px] px-[32px] font-semibold py-[16px] mt-[32px] rounded-full  hover:bg-[#F5E663] transition-colors"
           >
             Contact Us

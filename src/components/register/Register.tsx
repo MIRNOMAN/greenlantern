@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
+import Link from "next/link"
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -149,9 +150,11 @@ export default function Register() {
           </button>
 
           <div className="text-center mt-4">
+            <Link href="/credentialing-information">
             <button type="button" className="text-sm text-gray-600 border border-gray py-2 rounded-full px-4 w-full hover:underline">
               Log In
             </button>
+            </Link>
           </div>
         </form>
       </div>

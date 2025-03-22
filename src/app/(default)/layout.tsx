@@ -12,24 +12,17 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const pathname = usePathname();
 
-  // Define paths where TopBar should be hidden
-  const hideTopBarRoutes = [
-    "/our-services",
-    "/credit-card-liquidation",
-    "/group-economics",
-    "/red-card",
-    "/get-the-book",
-    "/about-us",
-  ];
+  // Define paths where Navber and Footer should be hidden
+  const hideLayoutRoutes = ["/user/dashboard"];
+
+  const shouldHideLayout = hideLayoutRoutes.includes(pathname);
 
   return (
     <div>
-      {/* Conditionally render TopBar */}
-      {!hideTopBarRoutes.includes(pathname)}
-
-      <Navber />
+      {/* Conditionally render Navber and Footer */}
+      {!shouldHideLayout && <Navber />}
       <main style={{ minHeight: "calc(100vh - 360px)" }}>{children}</main>
-      <Footer />
+      {!shouldHideLayout && <Footer />}
     </div>
   );
 };

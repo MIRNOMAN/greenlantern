@@ -7,6 +7,7 @@ import picturer_3 from "@/assets/Home/service/2149178663.jpg"
 import picturer_4 from "@/assets/Home/service/2148888835.jpg"
 import picturer_5 from "@/assets/Home/service/2148888824.jpg"
 import picturer_6 from "@/assets/Home/service/2148888813.jpg"
+import Link from "next/link"
 
 const serviceImages = [picturer_1, picturer_2, picturer_3, picturer_4, picturer_5, picturer_6]
 
@@ -69,6 +70,7 @@ export default function ServicesSection() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
+            <Link href={`/service/${service.name}`} key={index}>
             <div
               key={index}
               className="border border-[#ECECEC] bg-[#682D70] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-2 hover:border-[#F5E663] cursor-pointer"
@@ -92,6 +94,7 @@ export default function ServicesSection() {
                 <p className="text-[18px] font-normal leading-[28px] text-center text-white">{service.description}</p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -33,7 +33,7 @@ export default function Faq() {
           className="w-full object-cover  "
         />
         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white">
-          <div className="absolute top-[30%] left-1/2 -translate-x-1/2  -translate-y-1/2 md:h-[80px] md:w-[80px]  h-[30] w-[30] rounded-full  flex items-center justify-center">
+          <div className="absolute md:top-[30%]  left-1/2 -translate-x-1/2  -translate-y-1/2 md:h-[80px] md:w-[80px]  h-[30px] w-[30px] rounded-full  flex items-center justify-center">
             <div className="">
               <Image
                 src={backround_icon}

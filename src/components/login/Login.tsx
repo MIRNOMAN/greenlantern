@@ -87,20 +87,22 @@ export default function Login() {
                 </label>
               </div>
               <div className="text-sm">
-                <a href="#" className="font-medium text-yellow-400 hover:text-yellow-500">
+                <Link href="/login/forgot-password" className="font-medium text-yellow-400 hover:text-yellow-500">
                   Forgot Password?
-                </a>
+                </Link>
               </div>
             </div>
           </div>
 
           <div className="space-y-3">
+            <Link href="/create-form">
             <button
               type="submit"
               className="w-full rounded-3xl bg-yellow-400 py-2 text-sm font-medium text-white hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2"
-            >
+              >
               Log In
             </button>
+              </Link>
            
           </div>
         </form>

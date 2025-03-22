@@ -47,7 +47,7 @@ export default function ContactPage() {
             <span className="text-white text-sm  font-medium">Contact Us</span>
           </div>
 
-      <h1 className="text-[#F5E663] text-4xl mt-10  md:text-[56px] leading-[64px] font-semibold mb-10 text-center opacity-0 animate-[fadeIn_0.6s_ease-in-out_0.2s_forwards]">
+      <h1 className="text-[#F5E663] text-3xl md:mt-10  mt-5 md:text-[56px] leading-[64px] font-semibold MB-5 md:mb-10 text-center ">
         Contact Us Today
       </h1>
 

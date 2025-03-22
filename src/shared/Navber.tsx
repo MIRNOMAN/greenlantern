@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation"; // Use usePathname instead of useRouter
+import AvatarMenu from "@/components/AvatarMenu";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -68,6 +69,9 @@ export default function Navbar() {
           >
             Log In
           </Link>
+          <div>
+              <AvatarMenu />
+            </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -118,6 +122,9 @@ export default function Navbar() {
             >
               Log In
             </Link>
+            <div>
+              <AvatarMenu />
+            </div>
           </div>
         </div>
       )}

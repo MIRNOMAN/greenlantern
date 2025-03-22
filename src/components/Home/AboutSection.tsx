@@ -17,7 +17,7 @@ export default function AboutSection() {
                   alt="About Section Background"
                   width={900}
                   height={900}
-                  className="object-cover md:w-[284px] w-[224px] h-[300] md:h-[440px] rounded-lg shadow-md"
+                  className="object-cover md:w-[284px] w-[224px] h-[300px] md:h-[440px] rounded-lg shadow-md"
                 />
   
                </div>
