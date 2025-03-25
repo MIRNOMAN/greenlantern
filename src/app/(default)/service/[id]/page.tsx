@@ -8,7 +8,7 @@ export default function page() {
   return (
     <div>
         <DetailsHero/>
-        <CourseInfo/>
+        <CourseInfo />
         <Testimonial/>
          <YourLearning/>
     </div>

@@ -107,7 +107,7 @@ export default function VerificationForm() {
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
               onPaste={index === 0 ? handlePaste : undefined}
-              className="w-12 h-12 sm:w-14 sm:h-14 text-center text-lg border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300"
+              className="w-12 h-12 sm:w-14 sm:h-14 text-center  text-lg border border-[#ECECEC] rounded focus:outline-none focus:ring-2 focus:ring-yellow-300"
               required
               />
             ))}

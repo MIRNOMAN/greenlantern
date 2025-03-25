@@ -7,6 +7,7 @@ import man_image3 from "@/assets/Home/icons/Ellipse 5.png"
 import choose_image_1 from "@/assets/Home/2149178697.jpg"
 import choose_image_2 from "@/assets/Home/15871.jpg"
 import { Star } from 'lucide-react'
+import Link from 'next/link'
 
 export default function AboutWhyChooseUsSectio() {
   return (
@@ -178,9 +179,11 @@ export default function AboutWhyChooseUsSectio() {
           </div>
         </div>
 
-        <button className="bg-[#F5E663] text-black font-medium py-3 px-8 rounded-full hover:bg-[#d3c862] transition-colors text-sm">
+       <Link href="/contact">
+       <button className="bg-[#F5E663] text-black font-medium py-3 px-8 rounded-full hover:bg-[#d3c862] transition-colors text-sm">
         Contact Us
         </button>
+       </Link>
       </div>
     </div>
   )

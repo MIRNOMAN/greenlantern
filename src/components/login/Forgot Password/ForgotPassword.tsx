@@ -36,7 +36,7 @@ export default function ForgotPassword() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="johndylan@example.com"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 border border-[#ECECEC] rounded"
             required
             />
         </div>
@@ -54,7 +54,7 @@ export default function ForgotPassword() {
        <button
           type="submit"
           //   disabled={loading}
-          className="w-full bg-yellow-300 hover:bg-yellow-400 py-3 rounded-3xl font-medium transition-colors"
+          className="w-full bg-yellow-300 hover:bg-yellow-400 py-3 mt-3 rounded-3xl font-medium transition-colors"
         
           >
             send code

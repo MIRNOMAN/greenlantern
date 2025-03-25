@@ -18,14 +18,14 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
-    socialAuth: builder.mutation({
-      query: (data) => ({
-        url: "/auth/social-login",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["User"],
-    }),
+    // socialAuth: builder.mutation({
+    //   query: (data) => ({
+    //     url: "/auth/social-login",
+    //     method: "POST",
+    //     body: data,
+    //   }),
+    //   invalidatesTags: ["User"],
+    // }),
     sendOtp: builder.mutation({
       query: (email) => ({
         url: "/auth/forgot-password",
@@ -35,7 +35,7 @@ export const authApi = baseApi.injectEndpoints({
     }),
     getMe: builder.query({
       query: () => ({
-        url: "/users/me",
+        url: "/users",
         method: "GET",
       }),
       providesTags: ["User"],
@@ -73,5 +73,5 @@ export const {
   useVerifyOtpMutation,
   useResetPasswordMutation,
   useUpdateUserMutation,
-  useSocialAuthMutation,
+
 } = authApi;

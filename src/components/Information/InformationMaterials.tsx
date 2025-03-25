@@ -183,7 +183,7 @@ export default function InformationMaterials() {
             </button>
           </Link>
 
-          <Link href={isChecked ? "/login" : "#"}>
+          <Link href={isChecked ? "/create-form" : "#"}>
             <button
               className={`px-6 py-2 rounded-full ${
                 isChecked

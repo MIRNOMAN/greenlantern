@@ -1,8 +1,19 @@
+"use client"
+
+
 import Image from "next/image"
 
 import heroBanner from "@/assets/Home/3147.jpg"
+import { notFound, useParams } from "next/navigation";
+import { services } from "@/app/(default)/service/service";
 
 export default function DetailsHero() {
+    const {id} = useParams()
+    const service = services.find((s) => s.name === id);
+  
+    if (!service) {
+      notFound();
+    }
   return (
     <section className="relative md:h-[420px]  w-full">
     {/* Background Image */}
@@ -27,7 +38,7 @@ export default function DetailsHero() {
             <span className="ml-2 text-white font-medium">Service Details</span>
           </div>
         <h1 className="text-4xl md:text-[80px] md:pt-[20px] pt-[30px] font-semibold md:leading-[88px] text-white mb-6">
-        Service Name
+        {service.name}
         </h1>
 
         

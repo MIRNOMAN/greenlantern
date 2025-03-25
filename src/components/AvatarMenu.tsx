@@ -6,10 +6,13 @@ import { User, LogOut, } from 'lucide-react';
 import Image from 'next/image';
 import avatar_pictur from "@/assets/icons/sm.png"
 import Link from 'next/link';
+import { useGetMeQuery } from '@/redux/api/authApi';
 
 export default function AvatarMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const {data} = useGetMeQuery('')
+  // console.log(data?.data[0].firstName )
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -37,8 +40,8 @@ export default function AvatarMenu() {
           <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>
         </div>
         <div className="hidden md:block text-left">
-          <div className="text-sm font-semibold text-white">John Doe</div>
-          <div className="text-xs text-white">john@example.com</div>
+          <div className="text-sm font-semibold text-white">{data?.data[0].lastName}</div>
+          <div className="text-xs text-white">{data?.data[0].email}</div>
         </div>
       </button>
 

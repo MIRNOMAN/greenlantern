@@ -84,7 +84,7 @@ export default function ChangePassword() {
               type={showNewPassword ? "text" : "password"}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="w-full p-2 pr-10 border border-gray-300 rounded"
+              className="w-full p-2 pr-10 border border-[#ECECEC] rounded"
               placeholder="Aslijk237hjh%^****"
               required
             />
@@ -108,7 +108,7 @@ export default function ChangePassword() {
               type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full p-2 pr-10 border border-gray-300 rounded"
+              className="w-full p-2 pr-10 border border-[#ECECEC] rounded"
               placeholder="Aslijk237hjh%^****"
               required
             />

@@ -6,6 +6,7 @@ import { useState } from "react";
 import backround_image from "@/assets/Backround/Bright Classroom Setup 1.png";
 import backround_icon from "@/assets/Backround/Logo (3).png";
 import  ContactUsToday from "@/components/Home/ContactUsToday"
+import Link from "next/link";
 
 
 export default function Faq() {
@@ -46,9 +47,11 @@ export default function Faq() {
           Simplify Your
           Credentialing Today!
           </h2>
+          <Link href="/contact">
           <button className="mt-4 md:px-8 px-4 md:py-3 py-1 bg-[#F5E663] text-black rounded-full hover:bg-[#F5E663]transition-colors">
-          Subscribe
+          Contact Us
           </button>
+          </Link>
         </div>
       </div>
     </div>

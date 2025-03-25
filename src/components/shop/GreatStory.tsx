@@ -1,5 +1,6 @@
 import Image from "next/image"
 import story_picture from "@/assets/shop/image (18).png"
+import Link from "next/link"
 
 export default function GreatStory() {
   return (
@@ -78,9 +79,11 @@ export default function GreatStory() {
             We started with a simple goal: to make the credentialing process easier for pharmacists. What began as a solution to a complex challenge has now become a trusted service that helps pharmacists streamline their enrollment with insurance companies. Our journey is rooted in the belief that pharmacists should spend less time on paperwork and more time on patient care.
             </p>
             <div className="pt-4">
+              <Link href="/credentialing-information">
               <button className="bg-[#F5E663]  hover:bg-[#F5E663] text-black rounded-full py-3 md:py-4 px-5 md:px-10">
               Get Started
               </button>
+              </Link>
             </div>
           </div>
         </div>

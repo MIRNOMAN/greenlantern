@@ -7,7 +7,7 @@ import {
     FetchBaseQueryError,
   } from "@reduxjs/toolkit/query/react";
   import { RootState } from "../store";
-  import { logout, setUser } from "../features/authSlice";
+  // import { logout, setUser } from "../features/authSlice";
   
 
   
@@ -18,7 +18,7 @@ import {
   export const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: fetchBaseQuery({
-      baseUrl: "http://localhost:5000",
+      baseUrl: "http://10.0.10.65:4563/api/v1",
       prepareHeaders: (headers, { getState }) => {
         const state = getState() as RootState;
         const token = state?.auth?.token;
