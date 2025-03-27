@@ -6,6 +6,7 @@ import { Eye, EyeOff, Upload } from "lucide-react"
 import Link from "next/link"
 import { useRegisterMutation } from "@/redux/api/authApi"
 import { toast } from "sonner"
+import uploadFormData from "@/utils/uploadFormData"
 
 export default function Register() {
   const [registerData] = useRegisterMutation();
@@ -14,6 +15,7 @@ export default function Register() {
     lastName: "",
     email: "",
     phone: "",
+    PhotoUrl: "",
     password: "",
     confirmPassword: "",
   });
@@ -24,6 +26,7 @@ export default function Register() {
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -40,9 +43,14 @@ export default function Register() {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const formData = new FormData();
+      console.log(e.target.files);
+      formData.append("file", e.target.files[0]);
+
+      const url = await uploadFormData(formData);
+      setFormData((prev) => ({ ...prev, PhotoUrl: url }));
     }
   };
 
@@ -134,13 +142,14 @@ export default function Register() {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
+          photoUrl: formData.PhotoUrl,
           phone: formData.phone,
           password: formData.password, // Send the password since both match now
         };
 
         // Dispatch the register mutation with the form data
         const response = await registerData(formDataToSend);
-
+       console.log(response)
         if (response.error) {
           console.error("Registration failed", response.error);
           toast.error("Registration failed. Please try again.");
@@ -158,7 +167,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen dark:text-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-semibold mb-2">Sign Up</h1>
@@ -256,6 +265,7 @@ export default function Register() {
                   <Upload className="h-6 w-6 text-gray-400 mb-2" />
                   <p className="text-sm font-medium">Browse Files</p>
                   <p className="text-xs text-gray-500 mt-1">Drag and drop files here</p>
+                  <p className="text-xs">{formData.PhotoUrl}</p>
                 </div>
               )}
             </div>

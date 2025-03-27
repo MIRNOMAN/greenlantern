@@ -28,7 +28,7 @@ export default function ServiceDetails() {
   }
 
   return (
-    <div className="container mx-auto md:py-[105px] px-3 md:px-0 py-[50px] bg-white">
+    <div className="container mx-auto md:py-[105px] dark:text-black px-3 md:px-0 py-[50px] bg-white">
       <div className="flex flex-col md:flex-row md:gap-28 gap-10 items-start">
         <div className="w-full md:w-2/5 lg:w-5/12">
           <div className="rounded-lg overflow-hidden">

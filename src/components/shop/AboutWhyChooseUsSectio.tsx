@@ -11,7 +11,7 @@ import Link from 'next/link'
 
 export default function AboutWhyChooseUsSectio() {
   return (
-    <div className="container mx-auto px-4 md:py-[100px] py-10 flex flex-col lg:flex-row md:gap-12">
+    <div className="container mx-auto px-4 dark:text-black md:py-[100px] py-10 flex flex-col lg:flex-row md:gap-12">
       {/* Left side images */}
       <div className="relative flex-1 min-h-[500px]">
         {/* Top left image - team collaborating */}

@@ -8,8 +8,8 @@ import Link from "next/link"
 
 export default function AllProducts() {
   return (
-    <section className="container md:py-[100px] px-3 md:px-0 py-[30px]">
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section className="container md:py-[100px] px-3 dark:text-black md:px-0 py-[30px]">
+       <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6">
                  {services.map((service, index) => (
                    <Link href={`/service/${service.name}`} key={index}>
                    <div

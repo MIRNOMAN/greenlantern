@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function YourLearning() {
   return (
-    <div className="container px-4 md:px-0 py-[50px] ">
+    <div className="container px-4 md:px-0 dark:text-black py-[50px] ">
         <div className="relative md:mt-[50px] md:rounded-[60px] rounded-3xl overflow-hidden">
         <Image
           src={backround_image}

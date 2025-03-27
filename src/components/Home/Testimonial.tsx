@@ -107,7 +107,7 @@ export default function Testimonial() {
 
   return (
     <div className="bg-[#6ACAD3]">
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="container mx-auto px-4 dark:text-black py-12 md:py-20">
         {/* Header */}
         <div className="mb-12 text-center">
           <div className="flex items-center mx-auto border w-[110px] p-1 justify-center border-[#ECECEC] rounded-2xl mb-2">

@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function GreatStory() {
   return (
-    <div className="container mx-auto px-4 py-[40px] ">
+    <div className="container dark:text-black mx-auto px-4 py-[40px] ">
       {/* Stats Section */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
         <div className="border rounded-lg p-6 border-[#ECECEC] text-center">

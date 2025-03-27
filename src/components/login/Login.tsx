@@ -7,7 +7,7 @@ import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useLoginMutation } from "@/redux/api/authApi";
 import { toast } from "sonner";
-
+import Cookies from "js-cookie";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,20 +20,21 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     if (!rememberMe) {
       toast.error("You must agree to be remembered.");
       return;
     }
-  
+
     try {
       const res = await login({ email, password }).unwrap();
-  
+
       if (rememberMe) {
-        localStorage.setItem("userToken", res.data.accessToken);
+        // Set the token as a cookie (expires in 7 days for example)
+        Cookies.set("userToken", res.data.accessToken, { expires: 7 });
         console.log(res);
       }
-   
+
       toast.success("Login successful!");
       router.push("/");
     } catch (err: any) {
@@ -42,7 +43,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+    <div className="flex min-h-screen dark:text-black items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
         <div className="text-center">
           <h1 className="text-2xl md:text-4xl font-semibold text-gray-900">
@@ -104,13 +105,13 @@ export default function Login() {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-              <input
-                    id="remember-me"
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="h-4 w-4 rounded border-[#ECECEC] text-yellow-400 focus:ring-yellow-300"
-                  />
+                <input
+                  id="remember-me"
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="h-4 w-4 rounded border-[#ECECEC] text-yellow-400 focus:ring-yellow-300"
+                />
                 <label
                   htmlFor="remember-me"
                   className="ml-2 text-sm text-gray-700"

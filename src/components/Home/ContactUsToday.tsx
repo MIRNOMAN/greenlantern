@@ -41,7 +41,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#682D70]  flex flex-col items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen bg-[#682D70]  dark:text-black flex flex-col items-center justify-center p-4 md:p-8">
        <div className="flex items-center mx-auto border w-[110px] p-1 justify-center border-[#ECECEC] rounded-2xl mb-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#F5E663] mr-2"></div>
             <span className="text-white text-sm  font-medium">Contact Us</span>

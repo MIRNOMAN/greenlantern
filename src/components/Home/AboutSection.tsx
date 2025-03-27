@@ -6,7 +6,7 @@ import image_icon from "@/assets/Home/Frame (1).png"
 
 export default function AboutSection() {
   return (
-    <section className="md:py-[100px] py-[30px] md:px-0 px-5 bg-white">
+    <section className="md:py-[100px] dark:text-black py-[30px] md:px-0 px-5 bg-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
             <div className='flex items-end  gap-5 justify-center'>

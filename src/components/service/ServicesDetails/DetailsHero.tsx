@@ -15,7 +15,7 @@ export default function DetailsHero() {
       notFound();
     }
   return (
-    <section className="relative md:h-[420px]  w-full">
+    <section className="relative md:h-[420px] dark:text-black w-full">
     {/* Background Image */}
     <div className="absolute inset-0 z-0">
       <Image

@@ -1,58 +1,63 @@
-"use client"
+"use client";
 
-import type React from "react"
-import Image from "next/image"
-import logo from "@/assets/icons/Logo (5).png"
-import image_picture from "@/assets/icons/sm.png"
+import type React from "react";
+import Image from "next/image";
+import logo from "@/assets/icons/Logo (5).png";
+import image_picture from "@/assets/icons/sm.png";
 
 interface StatusItemProps {
-  title: string
-  status: "Complete" | "In Progress" | "Pending"
+  title: string;
+  status: "Complete" | "In Progress" | "Pending";
 }
 
 interface StatusColumnProps {
-  title: string
-  icon: React.ReactNode
-  statusType: "Complete" | "In Progress" | "Pending"
+  title: string;
+  icon: React.ReactNode;
+  statusType: "Complete" | "In Progress" | "Pending";
   items: {
-    title: string
-  }[]
+    title: string;
+  }[];
 }
 
 const StatusItem: React.FC<StatusItemProps> = ({ title, status }) => {
   return (
-    <div className="flex items-center justify-between mb-4 py-3 px-4 bg-white rounded-md shadow-sm">
+    <div className="flex dark:text-black items-center justify-between mb-4 py-3 px-4 bg-white rounded-md shadow-sm">
       <span className="text-sm font-medium text-gray-800">{title}</span>
       <span
         className={`text-xs px-3 py-1  rounded-full ${
           status === "Complete"
             ? "bg-green-100 text-green-800"
             : status === "In Progress"
-              ? "bg-blue-100 text-blue-800"
-              : "bg-yellow-100 text-yellow-800"
+            ? "bg-blue-100 text-blue-800"
+            : "bg-yellow-100 text-yellow-800"
         }`}
       >
         {status}
       </span>
     </div>
-  )
-}
+  );
+};
 
-const StatusColumn: React.FC<StatusColumnProps> = ({ title, icon, statusType, items }) => {
+const StatusColumn: React.FC<StatusColumnProps> = ({
+  title,
+  icon,
+  statusType,
+  items,
+}) => {
   return (
     <div className="flex-1 bg-[#F9F9F9] min-w-[280px] lg:min-w-0">
       <div className="flex items-center border border-[#ECECEC] gap-2 p-3 bg-white rounded-lg py-5  my-6 shadow-sm">
-      <div
-        className={`w-14 h-12 rounded-md flex items-center justify-center ${
-          statusType === "Complete"
-            ? "bg-yellow-100 "
-            : statusType === "In Progress"
+        <div
+          className={`w-14 h-12 rounded-md flex items-center justify-center ${
+            statusType === "Complete"
+              ? "bg-yellow-100 "
+              : statusType === "In Progress"
               ? "bg-yellow-100"
               : "bg-yellow-100"
-        }`}
-      >
-        {icon}
-      </div>
+          }`}
+        >
+          {icon}
+        </div>
         <span className="text-lg font-bold">{title}</span>
       </div>
 
@@ -71,8 +76,8 @@ const StatusColumn: React.FC<StatusColumnProps> = ({ title, icon, statusType, it
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default function UserDashboard() {
   const completedItems = [
@@ -84,7 +89,7 @@ export default function UserDashboard() {
     { title: "Pharmacy State License" },
     { title: "Pharmacy Insurance Information" },
     { title: "Pharmacy Tax Information" },
-  ]
+  ];
 
   const inProgressItems = [
     { title: "Pharmacy Mailing Address" },
@@ -93,7 +98,7 @@ export default function UserDashboard() {
     { title: "Pharmacy Service Areas" },
     { title: "Pharmacy Networks" },
     { title: "Pharmacy Staff Credentials" },
-  ]
+  ];
 
   const pendingItems = [
     { title: "Pharmacy Business Information" },
@@ -103,15 +108,21 @@ export default function UserDashboard() {
     { title: "Quality Assurance Program" },
     { title: "Pharmacy Technology Assessment" },
     { title: "Formulary Compliance" },
-  ]
+  ];
 
   return (
     <div className="bg-[#F9F9F9] min-h-screen p-4 ">
-        <header className="bg-white border-b  border-[#ECECEC] py-4 px-6">
+      <header className="bg-white border-b  border-[#ECECEC] py-4 px-6">
         <div className="flex justify-between items-center">
           <div className="w-10 h-10">
             <div className="w-12 h-12  rounded-md flex items-center justify-center">
-              <Image src={logo} alt="logo" width={500} height={500} className="" />
+              <Image
+                src={logo}
+                alt="logo"
+                width={500}
+                height={500}
+                className=""
+              />
             </div>
           </div>
           <div className="w-10 h-10 rounded-full overflow-hidden">
@@ -129,21 +140,21 @@ export default function UserDashboard() {
         .custom-scrollbar::-webkit-scrollbar {
           width: 8px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-track {
           background: #f1f1f1;
           border-radius: 10px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
           background: #c1c1c1;
           border-radius: 10px;
         }
-        
+
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: #a1a1a1;
         }
-        
+
         /* Firefox scrollbar */
         .custom-scrollbar {
           scrollbar-width: thin;
@@ -154,37 +165,79 @@ export default function UserDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 gap-4">
         <StatusColumn
           title="Completed"
-          icon={<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M29.3327 16.0003C29.3327 8.63653 23.3631 2.66699 15.9993 2.66699C8.63555 2.66699 2.66602 8.63653 2.66602 16.0003C2.66602 23.3641 8.63555 29.3337 15.9993 29.3337C23.3631 29.3337 29.3327 23.3641 29.3327 16.0003Z" fill="#F5E663" stroke="#F5E663" stroke-width="1.5"/>
-            <path d="M10.666 17.0003C10.666 17.0003 12.7993 18.217 13.866 20.0003C13.866 20.0003 17.066 13.0003 21.3327 10.667" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+            >
+              <path
+                d="M29.3327 16.0003C29.3327 8.63653 23.3631 2.66699 15.9993 2.66699C8.63555 2.66699 2.66602 8.63653 2.66602 16.0003C2.66602 23.3641 8.63555 29.3337 15.9993 29.3337C23.3631 29.3337 29.3327 23.3641 29.3327 16.0003Z"
+                fill="#F5E663"
+                stroke="#F5E663"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M10.666 17.0003C10.666 17.0003 12.7993 18.217 13.866 20.0003C13.866 20.0003 17.066 13.0003 21.3327 10.667"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          }
           statusType="Complete"
           items={completedItems}
         />
 
         <StatusColumn
           title="In Progress"
-          icon={<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <g opacity="0.8">
-            <path d="M29.3327 16.0003C29.3327 8.63653 23.3631 2.66699 15.9993 2.66699C8.63555 2.66699 2.66602 8.63653 2.66602 16.0003C2.66602 23.3641 8.63555 29.3337 15.9993 29.3337C23.3631 29.3337 29.3327 23.3641 29.3327 16.0003Z" stroke="#F5E663" stroke-width="1.5"/>
-            </g>
-            </svg>}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+            >
+              <g opacity="0.8">
+                <path
+                  d="M29.3327 16.0003C29.3327 8.63653 23.3631 2.66699 15.9993 2.66699C8.63555 2.66699 2.66602 8.63653 2.66602 16.0003C2.66602 23.3641 8.63555 29.3337 15.9993 29.3337C23.3631 29.3337 29.3327 23.3641 29.3327 16.0003Z"
+                  stroke="#F5E663"
+                  strokeWidth="1.5"
+                />
+              </g>
+            </svg>
+          }
           statusType="In Progress"
           items={inProgressItems}
         />
 
         <StatusColumn
           title="Pending"
-          icon={<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <g opacity="0.8">
-            <path d="M29.3327 16.0003C29.3327 8.63653 23.3631 2.66699 15.9993 2.66699C8.63555 2.66699 2.66602 8.63653 2.66602 16.0003C2.66602 23.3641 8.63555 29.3337 15.9993 29.3337C23.3631 29.3337 29.3327 23.3641 29.3327 16.0003Z" stroke="#F5E663" stroke-width="1.5"/>
-            </g>
-            </svg>}
+          icon={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+            >
+              <g opacity="0.8">
+                <path
+                  d="M29.3327 16.0003C29.3327 8.63653 23.3631 2.66699 15.9993 2.66699C8.63555 2.66699 2.66602 8.63653 2.66602 16.0003C2.66602 23.3641 8.63555 29.3337 15.9993 29.3337C23.3631 29.3337 29.3327 23.3641 29.3327 16.0003Z"
+                  stroke="#F5E663"
+                  strokeWidth="1.5"
+                />
+              </g>
+            </svg>
+          }
           statusType="Pending"
           items={pendingItems}
         />
       </div>
     </div>
-  )
+  );
 }
-

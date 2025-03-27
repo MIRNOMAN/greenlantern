@@ -6,7 +6,7 @@ import React, { useState } from "react";
 export default function InformationMaterials() {
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <div className="flex justify-center  md:pt-[160px] p-4">
+    <div className="flex justify-center dark:text-black md:pt-[160px] p-4">
       <div className="md:max-w-4xl w-full border-none border-[#ECECEC]  bg-[#F9F9F9]  p-8  rounded-lg">
         <h1 className="text-purple-800 text-2xl md:text-[40px] md:leading-[48px] font-semibold mb-4">
           Required information and materials

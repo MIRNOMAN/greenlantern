@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function ContactHero() {
   return (
-    <section className="relative md:h-[500px]  w-full">
+    <section className="relative md:h-[500px]  dark:text-black  w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

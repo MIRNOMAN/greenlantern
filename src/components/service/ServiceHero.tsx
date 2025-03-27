@@ -6,7 +6,7 @@ import heroBanner from "@/assets/Backround/Bright Classroom Setup 1.png"
 
 export default function ServiceHero() {
   return (
-    <section className="relative md:h-[450px]  w-full">
+    <section className="relative md:h-[450px] dark:text-black w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

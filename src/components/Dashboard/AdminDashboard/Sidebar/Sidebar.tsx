@@ -80,7 +80,7 @@ const Sidebar = ({ onCloseClick }: SidebarProps) => {
   return (
     <div className="flex ">
       {/* Sidebar */}
-      <aside className="md:w-72 bg-white max-h-screen px-2 z[100]">
+      <aside className="md:w-72 bg-white dark:text-black max-h-screen px-2 z[100]">
         <div className="py-7 pl-6 text-xl font-bold flex items-center space-x-2 justify-between">
           <div className="w-12 flex items-center justify-center gap-2">
             <Image src={adminlogo} alt="logo" />

@@ -8,7 +8,7 @@ import Link from "next/link"
 
 export default function ServicesSection() {
   return (
-    <section className="py-[100px] bg-[#682D70]">
+    <section className="py-[100px] bg-[#682D70] dark:text-black">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">

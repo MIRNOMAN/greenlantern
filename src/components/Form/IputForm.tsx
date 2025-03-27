@@ -406,7 +406,7 @@ export default function InputForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="md:max-w-5xl mx-auto md:my-[140px] py-[90px] border-none border-[#ECECEC] bg-[#F9F9F9] p-8 rounded-lg"
+      className="md:max-w-5xl mx-auto md:my-[140px] dark:text-black py-[90px] border-none border-[#ECECEC] bg-[#F9F9F9] p-8 rounded-lg"
     >
       <div className="space-y-6">
         <div>

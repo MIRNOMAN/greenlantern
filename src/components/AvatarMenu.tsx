@@ -14,6 +14,7 @@ export default function AvatarMenu() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const token = decodeJwtToken();
+console.log(token?.role);
 ;
 
   useEffect(() => {
@@ -52,12 +53,23 @@ export default function AvatarMenu() {
          
 
           <div className="py-1">
-           <Link href="/user/dashboard">
-           <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
-              <User className="w-4 h-4" />
-              <span>Dashboard</span>
-            </button>
-           </Link>
+          {token?.role === "SUPERADMIN" && (
+            <Link href="/admin/dashboard">
+              <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
+                <User className="w-4 h-4" />
+                <span>Dashboard</span>
+              </button>
+            </Link>
+          )}
+          
+          {token?.role === "USER" && (
+            <Link href="/user/dashboard">
+              <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
+                <User className="w-4 h-4" />
+                <span>Dashboard</span>
+              </button>
+            </Link>
+          )}
           </div>
 
         

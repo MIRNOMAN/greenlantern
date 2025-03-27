@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Faq() {
   return (
-    <div className=" mx-auto px-4 md:px-0 md:py-[100px] py-10">
+    <div className=" mx-auto px-4 md:px-0 dark:text-black md:py-[100px] py-10">
       <div className="flex container mx-auto border w-[80px] justify-center border-[#ECECEC] rounded-2xl items-center">
         <span className="h-1.5 w-1.5 rounded-full bg-[#F5E663]"></span>
         <span className="ml-2 text-black font-normal-">FAQ</span>

@@ -12,7 +12,7 @@ import Link from 'next/link'
 export default function WhyChooseUsSection() {
   return (
     <div className='bg-[#682D70] '>
-      <div className="mx-auto container px-4 md:py-[100px] py-10 flex flex-col lg:flex-row md:gap-12">
+      <div className="mx-auto container px-4 md:py-[100px] dark:text-black py-10 flex flex-col lg:flex-row md:gap-12">
       {/* Left side images */}
       <div className="relative  flex-1 min-h-[500px] ">
         {/* Top left image - team collaborating */}

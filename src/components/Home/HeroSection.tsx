@@ -8,7 +8,7 @@ import man_image3 from "@/assets/Home/icons/Ellipse 5.png"
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full">
+    <section className="relative min-h-screen dark:text-black w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

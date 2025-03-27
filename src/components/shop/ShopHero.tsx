@@ -7,7 +7,7 @@ import man_image3 from "@/assets/Home/icons/Ellipse 5.png"
 
 export default function ShopHero() {
   return (
-    <section className="relative md:h-[620px]  w-full">
+    <section className="relative md:h-[620px] dark:text-black w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

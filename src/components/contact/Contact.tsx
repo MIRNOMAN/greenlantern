@@ -41,7 +41,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-white  flex flex-col items-center justify-center p-4 md:p-8">
+    <div className="min-h-screen bg-white dark:text-black flex flex-col items-center justify-center p-4 md:p-8">
       
 
       <div className="w-full md:max-w-7xl  grid grid-cols-1 md:grid-cols-2 gap-6">
