@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 import { jwtDecode } from "jwt-decode";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("accessToken")?.value;
@@ -27,7 +27,9 @@ export function middleware(request: NextRequest) {
 
 // "Matching Paths"
 export const config = {
-  matcher: ["/information-materials","/credentialing-information", "/create-form", "/user/dashboard", "/admin/dashboard", "/admin/completed","/admin/expiring-soon" , 
-    "/admin/pending-requests", "/admin/total-pharmacists"
+  matcher: [
+    "/information-materials",
+    "/credentialing-information",
+    "/create-form",
   ],
 };
