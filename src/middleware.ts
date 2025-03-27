@@ -27,5 +27,7 @@ export function middleware(request: NextRequest) {
 
 // "Matching Paths"
 export const config = {
-  matcher: [],
+  matcher: ["/information-materials","/credentialing-information", "/create-form", "/user/dashboard", "/admin/dashboard", "/admin/completed","/admin/expiring-soon" , 
+    "/admin/pending-requests", "/admin/total-pharmacists"
+  ],
 };

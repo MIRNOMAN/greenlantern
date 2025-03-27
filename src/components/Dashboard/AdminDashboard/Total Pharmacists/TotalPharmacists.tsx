@@ -1,10 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import Image, { StaticImageData } from "next/image"
-import { ChevronLeft, ChevronRight, Search } from "lucide-react"
-import image from "@/assets/icons/sm.png"
-
+import Image, { type StaticImageData } from "next/image"
+import { ChevronLeft, ChevronRight, Search, View } from "lucide-react"
+import { PharmacistViewModal } from "@/components/ui/PharmacistViewModal"
 
 // Define types for our data
 type Pharmacist = {
@@ -26,9 +25,7 @@ type StatCard = {
 
 export default function TotalPharmacists() {
   // Stats cards state
-const stats: StatCard[] = [
-    { id: 1, title: "Total Pharmacists", count: 1584, icon: "user", color: "yellow" },
-  ]
+  const stats: StatCard[] = [{ id: 1, title: "Total Pharmacists", count: 1584, icon: "user", color: "yellow" }]
 
   // Search query state
   const [searchQuery, setSearchQuery] = useState("")
@@ -37,8 +34,12 @@ const stats: StatCard[] = [
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 7
 
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedPharmacist, setSelectedPharmacist] = useState<Pharmacist | null>(null)
+
   // All pharmacists data
-  const [allPharmacists, setAllPharmacists] = useState<Pharmacist[]>([
+  const [allPharmacists] = useState<Pharmacist[]>([
     {
       id: 1,
       name: "Sarah Johnson",
@@ -53,7 +54,7 @@ const stats: StatCard[] = [
       email: "jacklam@gmail.com",
       status: "Pending",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 3,
@@ -61,7 +62,7 @@ const stats: StatCard[] = [
       email: "tomlatham@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 4,
@@ -69,7 +70,7 @@ const stats: StatCard[] = [
       email: "shenwatson@gmail.com",
       status: "In Progress",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 5,
@@ -77,7 +78,7 @@ const stats: StatCard[] = [
       email: "bravojak@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 6,
@@ -85,7 +86,7 @@ const stats: StatCard[] = [
       email: "sullymela@gmail.com",
       status: "In Progress",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 7,
@@ -93,7 +94,7 @@ const stats: StatCard[] = [
       email: "othabrey@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 8,
@@ -101,7 +102,7 @@ const stats: StatCard[] = [
       email: "michalcarry@gmail.com",
       status: "Pending",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 9,
@@ -109,7 +110,7 @@ const stats: StatCard[] = [
       email: "johnsmith@gmail.com",
       status: "In Progress",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 10,
@@ -117,7 +118,7 @@ const stats: StatCard[] = [
       email: "emmawilson@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 11,
@@ -125,7 +126,7 @@ const stats: StatCard[] = [
       email: "davidbrown@gmail.com",
       status: "Pending",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 12,
@@ -133,7 +134,7 @@ const stats: StatCard[] = [
       email: "lisachen@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 13,
@@ -141,7 +142,7 @@ const stats: StatCard[] = [
       email: "michaeldavis@gmail.com",
       status: "In Progress",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 14,
@@ -149,7 +150,7 @@ const stats: StatCard[] = [
       email: "sophiakim@gmail.com",
       status: "Pending",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 15,
@@ -157,7 +158,7 @@ const stats: StatCard[] = [
       email: "roberttaylor@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 16,
@@ -165,7 +166,7 @@ const stats: StatCard[] = [
       email: "jenniferlee@gmail.com",
       status: "In Progress",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 17,
@@ -173,7 +174,7 @@ const stats: StatCard[] = [
       email: "danielmartin@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 18,
@@ -181,7 +182,7 @@ const stats: StatCard[] = [
       email: "oliviagarcia@gmail.com",
       status: "Pending",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 19,
@@ -189,7 +190,7 @@ const stats: StatCard[] = [
       email: "williamrodriguez@gmail.com",
       status: "In Progress",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 20,
@@ -197,7 +198,7 @@ const stats: StatCard[] = [
       email: "emilywhite@gmail.com",
       status: "Completed",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
     {
       id: 21,
@@ -205,46 +206,15 @@ const stats: StatCard[] = [
       email: "jamesjohnson@gmail.com",
       status: "Pending",
       submitted: "March 9, 2025",
-      avatar: image
+      avatar: "/placeholder.svg?height=48&width=48",
     },
   ])
 
-
-    // Function to update a pharmacist's status
-    const updatePharmacistStatus = (id: number) => {
-        setAllPharmacists((pharmacists) =>
-          pharmacists.map((pharmacist) => {
-            if (pharmacist.id === id) {
-              const statuses: Pharmacist["status"][] = ["In Progress", "Pending", "Completed", "Rejected"]
-              const currentIndex = statuses.indexOf(pharmacist.status)
-              const nextStatus = statuses[(currentIndex + 1) % statuses.length]
-              return { ...pharmacist, status: nextStatus }
-            }
-            return pharmacist
-          }),
-        )
-      }
-    
-
-
-    
-
-
-//   // Function to add a new pharmacist
-//   const addPharmacist = () => {
-//     const newId = allPharmacists.length + 1
-//     const newPharmacist: Pharmacist = {
-//       id: newId,
-//       name: `New Pharmacist ${newId}`,
-//       email: `pharmacist${newId}@example.com`,
-//       status: "Pending",
-//       submitted: "March 9, 2025",
-//       avatar: "/placeholder.svg?height=48&width=48",
-//     }
-
-//     setAllPharmacists([...allPharmacists, newPharmacist])
-//     setTotalPharmacists((prev) => prev + 1)
-//   }
+  // Function to open modal with selected pharmacist
+  const handleViewPharmacist = (pharmacist: Pharmacist) => {
+    setSelectedPharmacist(pharmacist)
+    setIsModalOpen(true)
+  }
 
   // Filter pharmacists based on search query
   const filteredPharmacists = allPharmacists.filter(
@@ -282,20 +252,25 @@ const stats: StatCard[] = [
         <div className="bg-white rounded-lg p-4 shadow-sm">
           <div className="flex items-start">
             <div className="w-14 h-14 rounded-full bg-yellow-100 p-3 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <g clip-path="url(#clip0_387_527)">
-            <path d="M24 6.66667H8V0H24V6.66667ZM24 12H21.32L21.3333 9.33333H10.7307L10.6667 12H8C6.93913 12 5.92172 12.4214 5.17157 13.1716C4.42143 13.9217 4 14.9391 4 16V32H28V16C28 14.9391 27.5786 13.9217 26.8284 13.1716C26.0783 12.4214 25.0609 12 24 12ZM21.3333 22.6667H17.3333V26.6667H14.6667V22.6667H10.6667V20H14.6667V16H17.3333V20H21.3333V22.6667Z" fill="#F5E663"/>
-            </g>
-            <defs>
-           
-            <rect width="32" height="32" fill="white"/>
-         
-            </defs>
-            </svg>
-                        </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <g clipPath="url(#clip0_387_527)">
+                  <path
+                    d="M24 6.66667H8V0H24V6.66667ZM24 12H21.32L21.3333 9.33333H10.7307L10.6667 12H8C6.93913 12 5.92172 12.4214 5.17157 13.1716C4.42143 13.9217 4 14.9391 4 16V32H28V16C28 14.9391 27.5786 13.9217 26.8284 13.1716C26.0783 12.4214 25.0609 12 24 12ZM21.3333 22.6667H17.3333V26.6667H14.6667V22.6667H10.6667V20H14.6667V16H17.3333V20H21.3333V22.6667Z"
+                    fill="#F5E663"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_387_527">
+                    <rect width="32" height="32" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
             <div className="ml-3">
               <p className="text-lg md:text-[20px] leading-[28px] font-semibold text-gray-600">Total Pharmacists</p>
-              <h3 className="text-xl md:text-[40px] leading-[48px] font-semibold mt-1">{stats[0].count.toLocaleString()}</h3>
+              <h3 className="text-xl md:text-[40px] leading-[48px] font-semibold mt-1">
+                {stats[0].count.toLocaleString()}
+              </h3>
             </div>
           </div>
         </div>
@@ -305,8 +280,8 @@ const stats: StatCard[] = [
           <div className="p-4 md:p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h2 className="text-lg md:text-[20px] leading-[28px] font-semibold text-gray-600">All Pharmacist</h2>
             <div className="relative w-full sm:w-64">
-              <div className="absolute  inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4  text-[#a3a0a0]" />
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-[#a3a0a0]" />
               </div>
               <input
                 type="text"
@@ -328,6 +303,7 @@ const stats: StatCard[] = [
                   <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                   <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                   <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
+                  <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">DOCUMENT</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#ECECEC]">
@@ -346,19 +322,28 @@ const stats: StatCard[] = [
                         </div>
                         <div className="ml-4">
                           <div className="text-[18px] leading-[28px] font-medium">{pharmacist.name}</div>
-                          <div className="text-[16px] leading-[26px] font-normal text-[#515050] opacity-80">{pharmacist.email}</div>
+                          <div className="text-[16px] leading-[26px] font-normal text-[#515050] opacity-80">
+                            {pharmacist.email}
+                          </div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
                         className={`px-3 py-1 inline-flex text-xs leading-5 font-medium rounded-full cursor-pointer ${getStatusBgColor(pharmacist.status)}`}
-                        onClick={() => updatePharmacistStatus(pharmacist.id)}
                       >
                         {pharmacist.status}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{pharmacist.submitted}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <button
+                        onClick={() => handleViewPharmacist(pharmacist)}
+                        className="text-blue-600 hover:text-blue-800 transition-colors"
+                      >
+                        <View className="h-5 w-5" />
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -418,9 +403,10 @@ const stats: StatCard[] = [
             </nav>
           </div>
         </div>
-
-        
       </div>
+
+      {/* Pharmacist View Modal */}
+      <PharmacistViewModal pharmacist={selectedPharmacist} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
