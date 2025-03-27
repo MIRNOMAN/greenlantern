@@ -37,30 +37,12 @@ export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
   return (
     <div>
       <div className="  bg-white  dark:text-black ">
-        <div>
-          <div className="text-xl font-semibold">Pharmacist Details</div>
-        </div>
+        
         {isLoading || updateLoading ? (
           <div>loading</div>
         ) : (
           <div className="space-y-6">
-            {/* 1st part */}
-            <div className="  w-full ">
-              <div className="flex items-center p-6 bg-white rounded-lg shadow-md border border-[#ECECEC]">
-                <div className="w-5 h-5 bg-yellow-400 rounded-full flex justify-center items-center mr-3">
-                  <span role="img" aria-label="hourglass">
-                    ⏳
-                  </span>
-                </div>
-                <div>
-                  <span className="text-3xl font-semibold">
-                    Pending Requests
-                  </span>
-                  {/* <span className="text-2xl font-bold ml-2">{count}</span> */}
-                  <h1 className="text-4xl font-bold ml-2">1714</h1>
-                </div>
-              </div>
-            </div>
+          
 
             {/* 2nd part */}
             <div className=" mx-auto p-6 bg-white shadow-lg rounded-lg">

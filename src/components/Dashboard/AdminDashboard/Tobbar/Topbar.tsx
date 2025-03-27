@@ -1,16 +1,15 @@
 "use client";
 
-// import Image from "next/image";
-// import hi from "@/assets/icons/Logo (5).png";
+;
 
 
 import Link from "next/link";
-import { useGetMeQuery } from "@/redux/api/authApi";
 import { Bell } from "lucide-react";
+import { decodeJwtToken } from '@/utils/tokenDecode';
 
 const Topbar: React.FC<{ onHamburgerClick: () => void }> = ({ onHamburgerClick }) => {
-  const { data } = useGetMeQuery({});
-  const userInformation = data?.data;
+
+  const token = decodeJwtToken();
 
   return (
     <header className="bg-white shadow py-4 px-6 lg:px-16  w-full">
@@ -25,7 +24,7 @@ const Topbar: React.FC<{ onHamburgerClick: () => void }> = ({ onHamburgerClick }
 
         {/* Welcome Message */}
         <h1 className="text-[#161616] flex items-center gap-2 text-[16px] sm:text-[20px] font-medium">
-          Welcome, {userInformation?.firstName || "User"} {userInformation?.lastName || ""}
+          Welcome, {token?.name} 
       
         </h1>
 

@@ -80,6 +80,7 @@ export default function InputForm() {
     providingCareToPatients: string[];
     pharmacyStatePlanCredentialingStatus: string;
     sameAsMailing: boolean;
+    
   }>({
     // Contact information
     userId: decodedToken?.id,

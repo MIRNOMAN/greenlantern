@@ -21,6 +21,9 @@ const roleBasedRoutes = {
     /^\/shop/, // /shop
     /^\/user/, // Anything under /user (e.g., /user/profile, /user/settings, etc.)
     /^\/user\/dashboard$/, // Specifically /user/dashboard
+    /^\/information-materials/, // /shop
+    /^\/credentialing-information/, 
+    /^\/create-form/, // /shop
   ],
   SUPERADMIN: [
 /^\/$/, // Homepage (if redirected here)
@@ -31,6 +34,8 @@ const roleBasedRoutes = {
     /^\/user\/dashboard$/, // Specifically /user/dashboard
     /^\/admin/, // Anything under /admin (e.g., /admin/*)
     /^\/admin\/dashboard$/, // Specifically /admin/dashboard
+  
+    
   ],
 }
 

@@ -3,50 +3,49 @@
 import { useGetPharmaciesQuery } from "@/redux/pharmacies/Pharmacies";
 import { PharmacyInfo } from "@/types/interface";
 import { formatDate } from "@/utils/formatDate";
-import { Search, View } from "lucide-react";
+import { ChevronLeft, ChevronRight, View } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+
 // Define types for our data
 
 export default function TotalPharmacists() {
-  // Search query state
-  const [searchQuery, setSearchQuery] = useState("");
+  const [page, setPage] = useState(1);
 
   // All pharmacists data
   const { isLoading, data } = useGetPharmaciesQuery(undefined);
-  console.log(data);
 
-  // // Filter pharmacists based on search query
-  // const filteredPharmacists = allPharmacists.filter(
-  //   (pharmacist) =>
-  //     pharmacist.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     pharmacist.email.toLowerCase().includes(searchQuery.toLowerCase()),
-  // )
+  const meta = data?.data?.meta;
 
-  // // Calculate total pages
-  // const totalPages = Math.ceil(filteredPharmacists.length / itemsPerPage)
+  const totalPages = meta ? Math.ceil(meta.total / meta.limit) : 1;
+  const isFirstPage = page === 1;
+  const isLastPage = page >= totalPages;
 
-  // // Get current page items
-  // const currentItems = filteredPharmacists.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+  const handlePrevPage = () => {
+    if (!isFirstPage) setPage((prev) => prev - 1);
+  };
+
+  const handleNextPage = () => {
+    if (!isLastPage) setPage((prev) => prev + 1);
+  };
+
+
 
   // Helper function to get status badge color
   const getStatusBgColor = (status: string) => {
     switch (status) {
-      case "In Progress":
+      case "IN_PROGRESS":
         return "bg-blue-100 text-blue-800";
-      case "Pending":
+      case "PENDING":
         return "bg-yellow-100 text-yellow-800";
-      case "Completed":
+      case "COMPLETED":
         return "bg-green-100 text-green-800";
-      case "Rejected":
-        return "bg-red-100 text-red-800";
       default:
         return "bg-gray-100 text-gray-800";
     }
   };
-
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       {isLoading ? (
@@ -94,20 +93,7 @@ export default function TotalPharmacists() {
               <h2 className="text-lg md:text-[20px] leading-[28px] font-semibold text-gray-600">
                 All Pharmacist
               </h2>
-              <div className="relative w-full sm:w-64">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 text-[#a3a0a0]" />
-                </div>
-                <input
-                  type="text"
-                  className="block w-full pl-10 pr-3 py-2 border border-[#ECECEC] rounded-xl text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Search"
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                  }}
-                />
-              </div>
+              
             </div>
 
             <div className="overflow-x-auto">
@@ -184,67 +170,34 @@ export default function TotalPharmacists() {
             </div>
 
             {/* Pagination */}
-            {/* <div className="px-6 py-4 flex items-center justify-center sm:justify-end">
-            <nav className="flex items-center space-x-2" aria-label="Pagination">
-              <button
-                className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-              >
-                <span className="sr-only">Previous</span>
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-
-              {Array.from({ length: Math.min(totalPages, 3) }).map((_, index) => {
-                // Show first page, current page, and last page
-                let pageNumber = index + 1
-
-                // If we have more than 3 pages and we're not on page 1 or 2
-                if (totalPages > 3 && currentPage > 2 && index === 0) {
-                  pageNumber = currentPage - 1
-                }
-                if (totalPages > 3 && currentPage > 2 && index === 1) {
-                  pageNumber = currentPage
-                }
-                if (totalPages > 3 && currentPage > 2 && index === 2) {
-                  pageNumber = Math.min(currentPage + 1, totalPages)
-                }
-
-                return (
-                  <button
-                    key={pageNumber}
-                    className={`px-4 py-2 text-sm rounded-md ${
-                      pageNumber === currentPage
-                        ? "bg-blue-50 text-blue-600 font-medium"
-                        : "text-gray-500 hover:bg-gray-50"
-                    }`}
-                    onClick={() => setCurrentPage(pageNumber)}
-                  >
-                    {pageNumber}
-                  </button>
-                )
-              })}
-
-              <button
-                className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-              >
-                <span className="sr-only">Next</span>
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </nav>
-          </div> */}
+            <div className="px-6 py-4 flex items-center justify-between">
+      <nav className="flex items-center space-x-2" aria-label="Pagination">
+        <button
+          onClick={handlePrevPage}
+          disabled={isFirstPage}
+          className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span className="sr-only">Previous</span>
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <span className="text-sm text-gray-700">
+          Page {meta?.page} of {Math.ceil(meta?.total / meta?.limit)}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={isLastPage}
+          className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span className="sr-only">Next</span>
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </nav>
+    </div>
           </div>
         </div>
       )}
 
-      {/* Pharmacist View Modal */}
-      {/* <PharmacistViewModal
-        pharmacyId={selectedPharmacyId}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      /> */}
+     
     </div>
   );
 }

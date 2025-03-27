@@ -1,20 +1,20 @@
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import adminlogo from "@/assets/icons/Logo (5).png";
 import Image from "next/image";
 import { LogOut } from "lucide-react";
 import avatar from "@/assets/icons/sm.png";
-import { toast } from "sonner";
-import { useDispatch } from "react-redux";
-import cookies from "js-cookie";
+
+
+
 import { AiOutlineClose } from "react-icons/ai";
 import icons_1 from "@/assets/admin/icons/mage_dashboard-2-fill.png"
 import icons_2 from "@/assets/admin/icons/Layer_1.png"
-import icons_3 from "@/assets/admin/icons/Layer_1 (2).png"
+
 import icons_4 from "@/assets/admin/icons/Layer_1 (1).png"
 import icons_5 from "@/assets/admin/icons/Frame (4).png"
-
-import { setUser } from "@/redux/features/authSlice";
+import Cookies from 'js-cookie';
+import { decodeJwtToken } from "@/utils/tokenDecode";
 
 interface SidebarProps {
   onCloseClick: () => void;
@@ -22,11 +22,10 @@ interface SidebarProps {
 
 const Sidebar = ({ onCloseClick }: SidebarProps) => {
   const pathname = usePathname();
-//   const { data } = useGetMeQuery({});
-//   const role = data?.data?.role; // Current user role
-//   console.log("role", role);
-  const router = useRouter();
-  const dispatch = useDispatch();
+
+    const token = decodeJwtToken();
+  
+  ;
 
   const menuItems = [
     {
@@ -53,29 +52,16 @@ const Sidebar = ({ onCloseClick }: SidebarProps) => {
       label: "Completed",
     //   roles: ["ADMIN"],
     },
-    {
-      href: "/admin/expiring-soon",
-      icon: icons_3,
-      label: "Expiring Soon",
-    //   roles: ["MEMBER"],
-    },
+    
     
   ];
 
-//   const filteredMenuItems = menuItems.filter((item) =>
-//     item.roles.includes(role)
-//   );
 
-  const handleLogout = () => {
-    // Clear user data in Redux
-    dispatch(setUser({ role: null, token: null, email: null }));
 
-    // Remove the token from cookies
-    cookies.remove("token");
-
-    toast.success("Logged out successfully!");
-    router.push("/login");
-  };
+const handleLogout = () => {
+  Cookies.remove('userToken'); // Remove the cookie
+  window.location.reload(); // Or redirect if needed
+};
 
   return (
     <div className="flex ">
@@ -126,18 +112,19 @@ const Sidebar = ({ onCloseClick }: SidebarProps) => {
           
           {/* User Info */}
           <div className="flex-1">
-            <h2 className="text-gray-900 font-medium">David Warner</h2>
-            <p className="text-gray-500 text-sm">Pharmacists Company</p>
+            <h2 className="text-gray-900 font-medium">{token?.name}</h2>
+            <p className="text-gray-500 text-sm">{token?.email}</p>
           </div>
         </div>
 
         {/* Logout Button */}
         <button 
-          className="mt-4 w-full flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors"
-        >
-          <LogOut size={18} onClick={handleLogout} />
-          <span>Log out</span>
-        </button>
+  onClick={handleLogout}
+  className="mt-4 w-full flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors"
+>
+  <LogOut size={18} />
+  <span>Log out</span>
+</button>
       </div>
        </div>
       </aside>
