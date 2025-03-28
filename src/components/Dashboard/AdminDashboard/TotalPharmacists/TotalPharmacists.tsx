@@ -8,14 +8,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-
 // Define types for our data
 
 export default function TotalPharmacists() {
   const [page, setPage] = useState(1);
 
   // All pharmacists data
-  const { isLoading, data } = useGetPharmaciesQuery(undefined);
+  const { isLoading, data } = useGetPharmaciesQuery([
+    { name: "page", value: page },
+  ]);
 
   const meta = data?.data?.meta;
 
@@ -30,8 +31,6 @@ export default function TotalPharmacists() {
   const handleNextPage = () => {
     if (!isLastPage) setPage((prev) => prev + 1);
   };
-
-
 
   // Helper function to get status badge color
   const getStatusBgColor = (status: string) => {
@@ -93,7 +92,6 @@ export default function TotalPharmacists() {
               <h2 className="text-lg md:text-[20px] leading-[28px] font-semibold text-gray-600">
                 All Pharmacist
               </h2>
-              
             </div>
 
             <div className="overflow-x-auto">
@@ -171,33 +169,34 @@ export default function TotalPharmacists() {
 
             {/* Pagination */}
             <div className="px-6 py-4 flex items-center justify-between">
-      <nav className="flex items-center space-x-2" aria-label="Pagination">
-        <button
-          onClick={handlePrevPage}
-          disabled={isFirstPage}
-          className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <span className="sr-only">Previous</span>
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <span className="text-sm text-gray-700">
-          Page {meta?.page} of {Math.ceil(meta?.total / meta?.limit)}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={isLastPage}
-          className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <span className="sr-only">Next</span>
-          <ChevronRight className="h-5 w-5" />
-        </button>
-      </nav>
-    </div>
+              <nav
+                className="flex items-center space-x-2"
+                aria-label="Pagination"
+              >
+                <button
+                  onClick={handlePrevPage}
+                  disabled={isFirstPage}
+                  className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="sr-only">Previous</span>
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <span className="text-sm text-gray-700">
+                  Page {meta?.page} of {Math.ceil(meta?.total / meta?.limit)}
+                </span>
+                <button
+                  onClick={handleNextPage}
+                  disabled={isLastPage}
+                  className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="sr-only">Next</span>
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </nav>
+            </div>
           </div>
         </div>
       )}
-
-     
     </div>
   );
 }

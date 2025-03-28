@@ -11,7 +11,10 @@ import { useState } from "react";
 
 export default function AdminDashboard() {
   const [page, setPage] = useState(1);
-  const { isLoading, data } = useGetPharmaciesQuery(undefined);
+
+  const { isLoading, data } = useGetPharmaciesQuery([
+    { name: "page", value: page },
+  ]);
   const pharmacists = data?.data?.data || [];
   const meta = data?.data?.meta;
 
@@ -26,6 +29,11 @@ export default function AdminDashboard() {
   const handleNextPage = () => {
     if (!isLastPage) setPage((prev) => prev + 1);
   };
+
+  console.log(
+    "status",
+    pharmacists.map((pharmacist: PharmacyInfo) => pharmacist.status)
+  );
 
   const totalPending = pharmacists.filter(
     (pharmacist: PharmacyInfo) => pharmacist.status === "PENDING"

@@ -2,13 +2,13 @@
 
 import type React from "react";
 
-import { useState, useRef, type FormEvent } from "react";
-import { ChevronDown } from "lucide-react";
-import Link from "next/link";
-import { toast } from "sonner"; // You may need to install this package
-import uploadFormData from "@/utils/uploadFormData";
 import { useFormSubmitMutation } from "@/redux/pharmacies/Pharmacies";
 import { decodeJwtToken } from "@/utils/tokenDecode";
+import uploadFormData from "@/utils/uploadFormData";
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { useRef, useState, type FormEvent } from "react";
+import { toast } from "sonner"; // You may need to install this package
 
 export default function InputForm() {
   const [iRSLetter, setIRSLetter] = useState("");
@@ -122,7 +122,7 @@ export default function InputForm() {
 
     // Pharmacy business information
     pharmacyServiceLocation: "Retail pharmacy with walk-in services",
-    pharmacyBusinessInformationStatus: "IN_PROGRESS",
+    pharmacyBusinessInformationStatus: "PENDING",
 
     // Professional information
     pharmacyDEACertificateNumber: "",
@@ -392,8 +392,7 @@ export default function InputForm() {
       // Use the mutation from Redux toolkit if available
 
       const response = await formSubmitHandle(dataToSend);
-      if(response)
-        toast.success("Form submitted successfully!");
+      if (response) toast.success("Form submitted successfully!");
       // Optionally redirect to a success page
       // window.location.href = '/submission-success';
     } catch {

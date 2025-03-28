@@ -1,15 +1,17 @@
 "use client";
 
-import type React from "react";
-import { useState, useRef } from "react";
+import { useRegisterMutation } from "@/redux/api/authApi";
+import uploadFormData from "@/utils/uploadFormData";
 import { Eye, EyeOff, Upload } from "lucide-react";
 import Link from "next/link";
-import { useRegisterMutation } from "@/redux/api/authApi";
+import { redirect } from "next/navigation";
+import type React from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
-import uploadFormData from "@/utils/uploadFormData";
 
 export default function Register() {
   const [registerData] = useRegisterMutation();
+  const [photoLink, setPhotoLink] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -50,6 +52,7 @@ export default function Register() {
 
       const url = await uploadFormData(formData);
       setFormData((prev) => ({ ...prev, PhotoUrl: url }));
+      setPhotoLink(url);
     }
   };
 
@@ -148,13 +151,14 @@ export default function Register() {
 
         // Dispatch the register mutation with the form data
         const response = await registerData(formDataToSend);
-        console.log(response);
         if (response.error) {
           toast.error("Registration failed. Please try again.");
         } else {
           // Handle successful registration (redirect, success message, etc.)
-          console.log("Registration successful:", response.data);
           toast.success("Sign up successful!");
+          setTimeout(() => {
+            redirect("/login");
+          }, 2000);
           // You can also redirect or do something else after successful registration
         }
       } catch {
@@ -306,7 +310,7 @@ export default function Register() {
                   <p className="text-xs text-gray-500 mt-1">
                     Drag and drop files here
                   </p>
-                  <p className="text-xs">{formData.PhotoUrl}</p>
+                  <p className="text-xs">{photoLink}</p>
                 </div>
               )}
             </div>

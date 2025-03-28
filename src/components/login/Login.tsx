@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useLoginMutation } from "@/redux/api/authApi";
+import Cookies from "js-cookie";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
-import { useLoginMutation } from "@/redux/api/authApi";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
-import Cookies from "js-cookie";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -119,12 +119,12 @@ export default function Login() {
                   Remember Me
                 </label>
               </div>
-              <Link
+              {/* <Link
                 href="/login/forgot-password"
                 className="text-sm text-yellow-400 hover:text-yellow-500"
               >
                 Forgot Password?
-              </Link>
+              </Link> */}
             </div>
           </div>
 
