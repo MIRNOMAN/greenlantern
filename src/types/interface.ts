@@ -76,6 +76,7 @@ export type UserTokenPayload = {
   id: string;
   name: string;
   email: string;
+  photoUrl: string;
   role: "USER" | "SUPERADMIN";
   iat: number; // Issued at (timestamp)
   exp: number; // Expiry time (timestamp)

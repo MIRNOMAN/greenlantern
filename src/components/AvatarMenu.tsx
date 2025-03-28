@@ -36,8 +36,10 @@ console.log(token?.role);
       >
         <div className="relative">
           <Image
-            src={avatar_pictur}
+            src={token?.photoUrl  || avatar_pictur}
             alt="Profile"
+            width={600}
+            height={600}
             className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm"
           />
           <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"></div>

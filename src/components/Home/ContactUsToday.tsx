@@ -1,45 +1,86 @@
 "use client"
-
-import { useState } from "react"
+import { useRef, useState } from "react"
 import contact_icon_1 from "@/assets/icons/Icon & text (1).png"
 import contact_icon_2 from "@/assets/icons/Icon & text (2).png"
 import contact_icon_3 from "@/assets/icons/Icon & text.png"
-import { useForm } from "react-hook-form"
+import emailjs from "@emailjs/browser"
+import { Loader2 } from "lucide-react"
+import { toast } from "sonner"
 import Image from "next/image"
-
 export default function ContactPage() {
+  const form = useRef<HTMLFormElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    message: false,
+    phone: false,
+    emailFormat: false,
+  })
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>()
+  const validateForm = () => {
+    if (!form.current) return false
 
-  interface FormData {
-    name: string;
-    email: string;
-    phone?: string;
-    message: string;
+    const nameInput = form.current.elements.namedItem("name") as HTMLInputElement
+    const emailInput = form.current.elements.namedItem("email") as HTMLInputElement
+    const phoneInput = form.current.elements.namedItem("phone") as HTMLInputElement
+    const messageInput = form.current.elements.namedItem("message") as HTMLTextAreaElement
+
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+
+    const newErrors = {
+      name: !nameInput.value,
+      email: !emailInput.value,
+      message: !messageInput.value,
+      phone: !phoneInput.value, // Add a default value for Phone
+      emailFormat: !!emailInput.value && !emailRegex.test(emailInput.value),
+    }
+
+    setErrors(newErrors)
+
+    return !newErrors.name && !newErrors.email && !newErrors.phone && !newErrors.message && !newErrors.emailFormat
   }
 
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true)
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    console.log(data)
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    reset()
-
-    // Reset success message after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-    }, 3000)
-  }
-
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    if (!validateForm()) return;
+  
+    setIsSubmitting(true);
+  
+    // Ensure to use async/await for better readability and error handling
+    const sendFormData = async () => {
+      try {
+        const result = await emailjs.sendForm(
+          "service_5s5i5s7",
+         "template_pcsr4to",
+          form.current!,
+          {
+            publicKey: "mKZuoPEHDJTEEn0-J",
+          }
+        );
+  
+        console.log("SUCCESS!", result);
+  
+        setIsSubmitted(true);
+  
+        if (form.current) form.current.reset();
+  
+        // Reset the success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } catch (error) {
+        console.error("FAILED...", error);
+        toast.error("Failed to send your message. Please try again later.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+  
+    sendFormData();
+  };
   return (
     <div className="min-h-screen bg-[#682D70]  dark:text-black flex flex-col items-center justify-center p-4 md:p-8">
        <div className="flex items-center mx-auto border w-[110px] p-1 justify-center border-[#ECECEC] rounded-2xl mb-2">
@@ -103,68 +144,76 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column */}
-        <div className="bg-white rounded-lg p-6 md:p-8  md:translate-x-[20px] animate-[fadeInRight_0.6s_ease-in-out_0.4s_forwards]">
-          <h2 className="text-purple-900 text-[32px] leading-[40px] font-semibold  mb-6">Get In Touch</h2>
-
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <input
-                type="text"
-                placeholder="Name"
-                className={`w-full p-3 border border-[#ECECEC] ${errors.name ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
-                {...register("name", { required: true })}
-              />
-              {errors.name && <span className="text-red-500 text-sm">Name is required</span>}
+        <div className="rounded-lg p-6 border-[#ECECEC] bg-[#F9F9F9] md:p-8 md:translate-x-[20px] animate-[fadeInRight_0.6s_ease-in-out_0.4s_forwards]">
+              <h2 className="text-purple-900 text-[32px] leading-[40px] font-semibold mb-6">Get In Touch</h2>
+        
+              <form ref={form} onSubmit={sendEmail} className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    className={`w-full p-3 border border-[#ECECEC] ${errors.name ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
+                  />
+                  {errors.name && <span className="text-red-500 text-sm">Name is required</span>}
+                </div>
+        
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    className={`w-full p-3 border border-[#ECECEC] ${errors.email || errors.emailFormat ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
+                  />
+                  {errors.email && <span className="text-red-500 text-sm">Email is required</span>}
+                  {errors.emailFormat && <span className="text-red-500 text-sm">Invalid email address</span>}
+                </div>
+        
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone"
+                    className="w-full p-3 border border-[#ECECEC] border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200"
+                  />
+                   {errors.phone && <span className="text-red-500 text-sm">phone is required</span>}
+        
+                </div>
+        
+                <div>
+                  <textarea
+                    name="message"
+                    placeholder="Message"
+                    rows={5}
+                    className={`w-full p-3 border border-[#ECECEC] ${errors.message ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
+                  />
+                  {errors.message && <span className="text-red-500 text-sm">Message is required</span>}
+                </div>
+        
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-yellow-300 text-black font-medium py-3 rounded-[60px] transition-all duration-300 hover:bg-yellow-400 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 flex items-center justify-center"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : isSubmitted ? (
+                    "Submitted!"
+                  ) : (
+                    "Submit Now"
+                  )}
+                </button>
+        
+                {isSubmitted && (
+                  <div className="text-green-600 text-center animate-[fadeIn_0.3s_ease-in-out] p-3 bg-green-50 rounded-lg">
+                    Thank you! Your message has been sent successfully.
+                  </div>
+                )}
+              </form>
             </div>
-
-            <div>
-              <input
-                type="email"
-                placeholder="Email"
-                className={`w-full p-3 border border-[#ECECEC] ${errors.email ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
-                {...register("email", {
-                  required: true,
-                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                })}
-              />
-              {errors.email?.type === "required" && <span className="text-red-500 text-sm">Email is required</span>}
-              {errors.email?.type === "pattern" && <span className="text-red-500 text-sm">Invalid email address</span>}
-            </div>
-
-            <div>
-              <input
-                type="tel"
-                placeholder="Phone"
-                className={`w-full p-3 border border-[#ECECEC] ${errors.phone ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
-                {...register("phone")}
-              />
-            </div>
-
-            <div>
-              <textarea
-                placeholder="Message"
-                rows={5}
-                className={`w-full p-3 border border-[#ECECEC] ${errors.message ? "border-red-500" : "border-gray-200"} rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200`}
-                {...register("message", { required: true })}
-              />
-              {errors.message && <span className="text-red-500 text-sm">Message is required</span>}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-yellow-300 text-black font-medium py-3 rounded-[60px] transition-all duration-300 hover:bg-yellow-400 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
-            >
-              {isSubmitting ? "Submitting..." : isSubmitted ? "Submitted!" : "Submit Now"}
-            </button>
-
-            {isSubmitted && (
-              <div className="text-black text-center animate-[fadeIn_0.3s_ease-in-out]">
-                Thank you! Your message has been sent successfully.
-              </div>
-            )}
-          </form>
-        </div>
       </div>
     </div>
   )

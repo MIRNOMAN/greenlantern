@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function CredentialingInformations() {
   return (
-    <div className="flex justify-cente dark:text-black md:pt-[140px] pt-[70px] items-center min-h-screen bg-white p-4">
+    <div className="flex justify-center dark:text-black md:py-[140px] pt-[70px] items-center min-h-screen bg-white p-4">
     <div className="w-full max-w-4xl border-none border-[#ECECEC]  bg-[#F9F9F9]  p-8 rounded-md">
       <h1 className="text-purple-800 text-2xl md:text-[40px] md:leading-[48px] font-semibold mb-4">
         Scripted Pharmacy Facility Credentialing Information

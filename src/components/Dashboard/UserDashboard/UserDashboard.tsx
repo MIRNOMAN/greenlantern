@@ -6,6 +6,7 @@ import logo from "@/assets/icons/Logo (5).png";
 import image_picture from "@/assets/icons/sm.png";
 import { decodeJwtToken } from "@/utils/tokenDecode";
 import { useGetPharmaciesQuery } from "@/redux/pharmacies/Pharmacies";
+import Link from "next/link";
 
 
 interface StatusItemProps {
@@ -171,6 +172,7 @@ export default function UserDashboard() {
          <div className="flex justify-between items-center">
            <div className="w-10 h-10">
              <div className="w-12 h-12  rounded-md flex items-center justify-center">
+             <Link href='/'>
                <Image
                  src={logo}
                  alt="logo"
@@ -178,17 +180,20 @@ export default function UserDashboard() {
                  height={500}
                  className=""
                />
+                </Link>
              </div>
            </div>
+          
            <div className="w-10 h-10 rounded-full overflow-hidden">
              <Image
-               src={image_picture}
+               src={ token?.photoUrl  ||image_picture}
                alt="User avatar"
                width={300}
                height={300}
                className="rounded-full"
              />
            </div>
+          
          </div>
        </header>
        <style jsx global>{`

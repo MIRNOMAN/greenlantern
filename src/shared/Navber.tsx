@@ -24,12 +24,15 @@ export default function Navbar() {
 
     const fetchUser = async () => {
       try {
-        const response = await fetch("http://10.0.10.65:4563/api/v1/users", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "http://104.236.194.254:4563/api/v1/users",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!response.ok) throw new Error("Failed to fetch user");
 

@@ -2,10 +2,13 @@
 
 const uploadFormData = async (formData: FormData) => {
   try {
-    const response = await fetch("http://10.0.10.65:4563/api/v1/users/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      "http://104.236.194.254:4563/api/v1/users/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to upload form data");

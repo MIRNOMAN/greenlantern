@@ -4,8 +4,9 @@
 
 
 import Link from "next/link";
-import { Bell } from "lucide-react";
+import avatar_pictur from "@/assets/icons/sm.png"
 import { decodeJwtToken } from '@/utils/tokenDecode';
+import Image from "next/image";
 
 const Topbar: React.FC<{ onHamburgerClick: () => void }> = ({ onHamburgerClick }) => {
 
@@ -28,7 +29,17 @@ const Topbar: React.FC<{ onHamburgerClick: () => void }> = ({ onHamburgerClick }
       
         </h1>
 
-        <Link href="/" className="" ><Bell /></Link>
+        <Link href="/" className="" >
+             <div className="w-10 h-10 rounded-full overflow-hidden">
+             <Image
+               src={ token?.photoUrl  ||avatar_pictur}
+               alt="User avatar"
+               width={300}
+               height={300}
+               className="rounded-full"
+             />
+           </div>
+          </Link>
       </div>
     </header>
   );

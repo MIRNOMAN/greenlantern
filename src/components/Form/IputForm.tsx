@@ -391,8 +391,9 @@ export default function InputForm() {
 
       // Use the mutation from Redux toolkit if available
 
-      await formSubmitHandle(dataToSend);
-
+      const response = await formSubmitHandle(dataToSend);
+      if(response)
+        toast.success("Form submitted successfully!");
       // Optionally redirect to a success page
       // window.location.href = '/submission-success';
     } catch {

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack  -p 7532",
     "build": "next build",
-    "start": "next start",
+    "start": "next start  -p 7532",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.6.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

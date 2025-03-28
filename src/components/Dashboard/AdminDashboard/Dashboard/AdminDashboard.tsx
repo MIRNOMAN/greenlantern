@@ -9,8 +9,6 @@ import Image from "next/image";
 import { useState } from "react";
 // Define types for our data
 
-
-
 export default function AdminDashboard() {
   const [page, setPage] = useState(1);
   const { isLoading, data } = useGetPharmaciesQuery(undefined);
@@ -29,10 +27,12 @@ export default function AdminDashboard() {
     if (!isLastPage) setPage((prev) => prev + 1);
   };
 
-
-  const totalPending = pharmacists.filter((pharmacist: PharmacyInfo) => pharmacist.status === "PENDING").length;
-  const totalComplete = pharmacists.filter((pharmacist: PharmacyInfo) => pharmacist.status === "COMPLETED").length;
-
+  const totalPending = pharmacists.filter(
+    (pharmacist: PharmacyInfo) => pharmacist.status === "PENDING"
+  ).length;
+  const totalComplete = pharmacists.filter(
+    (pharmacist: PharmacyInfo) => pharmacist.status === "COMPLETED"
+  ).length;
 
   // Helper function to get status badge color
   const getStatusBgColor = (status: string) => {
@@ -52,7 +52,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
-      
       <div className="mx-auto">
         {/* Stats Cards */}
 
@@ -91,7 +90,7 @@ export default function AdminDashboard() {
                       Total Pharmacists
                     </div>
                     <div className="text-sm md:text-3xl font-semibold">
-                    {data?.data?.meta?.total}
+                      {data?.data?.meta?.total}
                     </div>
                   </div>
                 </div>
@@ -225,28 +224,31 @@ export default function AdminDashboard() {
 
             {/* Pagination */}
             <div className="px-6 py-4 flex items-center justify-between">
-      <nav className="flex items-center space-x-2" aria-label="Pagination">
-        <button
-          onClick={handlePrevPage}
-          disabled={isFirstPage}
-          className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <span className="sr-only">Previous</span>
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <span className="text-sm text-gray-700">
-          Page {meta?.page} of {Math.ceil(meta?.total / meta?.limit)}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={isLastPage}
-          className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <span className="sr-only">Next</span>
-          <ChevronRight className="h-5 w-5" />
-        </button>
-      </nav>
-    </div>
+              <nav
+                className="flex items-center space-x-2"
+                aria-label="Pagination"
+              >
+                <button
+                  onClick={handlePrevPage}
+                  disabled={isFirstPage}
+                  className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="sr-only">Previous</span>
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <span className="text-sm text-gray-700">
+                  Page {meta?.page} of {Math.ceil(meta?.total / meta?.limit)}
+                </span>
+                <button
+                  onClick={handleNextPage}
+                  disabled={isLastPage}
+                  className="p-2 rounded-md text-gray-400 hover:text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="sr-only">Next</span>
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </nav>
+            </div>
           </div>
         )}
       </div>
