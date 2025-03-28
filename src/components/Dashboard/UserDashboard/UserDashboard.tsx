@@ -17,7 +17,7 @@ interface StatusColumnProps {
   title: string;
   icon: React.ReactNode;
   statusType: "Complete" | "In Progress" | "Pending";
-  items: [];
+  items: string[];
 }
 
 const StatusItem: React.FC<StatusItemProps> = ({ title, status }) => {
@@ -45,8 +45,6 @@ const StatusColumn: React.FC<StatusColumnProps> = ({
   statusType,
   items,
 }) => {
-  console.log(items, "paise");
-
   return (
     <div className="flex-1 bg-[#F9F9F9] min-w-[280px] lg:min-w-0">
       <div className="flex items-center border border-[#ECECEC] gap-2 p-3 bg-white rounded-lg py-5  my-6 shadow-sm">
@@ -93,71 +91,29 @@ export default function UserDashboard() {
     },
   ]);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   // Access all user pharmacy data
   const allUserData = data?.data?.data || [];
 
-  // Get the current user's pharmacy data object
-  const singleData = allUserData?.find(
-    (item: { id: string; userId: string }) => item?.userId === userId
-  );
+  const pendingData: string[] = [];
+  const inProgressData: string[] = [];
+  const incompleteData: string[] = [];
 
-  console.log(singleData);
+  console.log(allUserData);
 
-  // Initialize arrays to hold matched data
-  const pendingData: typeof allUserData = [];
-  const inProgressData: typeof allUserData = [];
-  const incompleteData: typeof allUserData = [];
-
-  if (singleData) {
-    const {
-      pharmacyCredentialingPointStatus,
-      pharmacyBusinessInformationStatus,
-      pharmacyLegalInformationStatus,
-      pharmacyMailingAddressStatus,
-      pharmacyProfessionalInformationStatus,
-      pharmacyStatePlanCredentialingStatus,
-    } = singleData;
-
-    const statuses = [
-      pharmacyCredentialingPointStatus,
-      pharmacyBusinessInformationStatus,
-      pharmacyLegalInformationStatus,
-      pharmacyMailingAddressStatus,
-      pharmacyProfessionalInformationStatus,
-      pharmacyStatePlanCredentialingStatus,
-    ];
-
-    if (statuses.includes("PENDING")) {
-      pendingData.push(singleData);
+  // Categorizing based on status
+  Object.entries(allUserData[0])?.forEach(([key, value]) => {
+    if (value === "PENDING" && key !== "status") {
+      pendingData.push(key);
+    } else if (value === "IN_PROGRESS" && key !== "status") {
+      inProgressData.push(key);
+    } else if (value === "COMPLETED" && key !== "status") {
+      incompleteData.push(key);
     }
-
-    if (statuses.includes("IN_PROGRESS")) {
-      inProgressData.push(singleData);
-    }
-
-    if (statuses.includes("INCOMPLETE")) {
-      incompleteData.push(singleData);
-    }
-  }
-
-  const pendingFields = inProgressData.flatMap(
-    (data: { [key: string]: string }) =>
-      Object.entries(data)
-        .filter(([key, value]) => value === "PENDING" && key !== "status")
-        .map(([key]) => key)
-  );
-  const completeFields = inProgressData.flatMap(
-    (data: { [key: string]: string }) =>
-      Object.entries(data)
-        .filter(([key, value]) => value === "COMPLETED" && key !== "status")
-        .map(([key]) => key)
-  );
-  const progressFields = inProgressData.flatMap(
-    (data: { [key: string]: string }) =>
-      Object.entries(data)
-        .filter(([key, value]) => value === "IN_PROGRESS" && key !== "status")
-        .map(([key]) => key)
-  );
+  });
 
   return (
     <div>
@@ -245,7 +201,7 @@ export default function UserDashboard() {
                 </svg>
               }
               statusType="Complete"
-              items={completeFields}
+              items={incompleteData}
             />
 
             <StatusColumn
@@ -268,7 +224,7 @@ export default function UserDashboard() {
                 </svg>
               }
               statusType="In Progress"
-              items={progressFields}
+              items={inProgressData}
             />
 
             <StatusColumn
@@ -291,7 +247,7 @@ export default function UserDashboard() {
                 </svg>
               }
               statusType="Pending"
-              items={pendingFields}
+              items={pendingData}
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
 import { PharmacyInfo } from "@/types/interface";
 import { formatDate } from "@/utils/formatDate";
 import Image from "next/image";
+import Link from "next/link";
 
 export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
   // Helper function to get status badge color
@@ -37,13 +38,10 @@ export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
   return (
     <div>
       <div className="  bg-white  dark:text-black ">
-        
         {isLoading || updateLoading ? (
           <div>loading</div>
         ) : (
           <div className="space-y-6">
-          
-
             {/* 2nd part */}
             <div className=" mx-auto p-6 bg-white shadow-lg rounded-lg">
               <div className="flex justify-between">
@@ -239,13 +237,15 @@ export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
                     <span className="text-yellow-200">*</span>
                   </label>
                   <div className="border border-[#ECECEC] md:h-[130px] h-[80px] w-[120px] md:w-[200px]">
-                    <Image
-                      src={dynamicData.IRSLetter}
-                      alt="picture"
-                      height={600}
-                      width={600}
-                      className="w-full h-full"
-                    />
+                    <Link target="_blank" href={dynamicData.IRSLetter}>
+                      <Image
+                        src={dynamicData.IRSLetter}
+                        alt="picture"
+                        height={600}
+                        width={600}
+                        className="w-full h-full"
+                      />
+                    </Link>
                   </div>
                 </div>
 
@@ -255,13 +255,15 @@ export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
                     <span className="text-yellow-200">*</span>
                   </label>
                   <div className="border border-[#ECECEC] md:h-[130px] h-[80px] w-[120px] md:w-[200px]">
-                    <Image
-                      src={dynamicData.copyOfYourW9}
-                      alt="picture"
-                      height={600}
-                      width={600}
-                      className="w-full h-full"
-                    />
+                    <Link target="_blank" href={dynamicData.copyOfYourW9}>
+                      <Image
+                        src={dynamicData.copyOfYourW9}
+                        alt="picture"
+                        height={600}
+                        width={600}
+                        className="w-full h-full"
+                      />
+                    </Link>
                   </div>
                 </div>
 
@@ -586,13 +588,18 @@ export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
                     <span className="text-yellow-200">*</span>
                   </label>
                   <div className="border border-[#ECECEC] md:h-[130px] h-[80px] w-[120px] md:w-[200px]">
-                    <Image
-                      src={dynamicData.copyOfDEACertificateNumber}
-                      alt="picture"
-                      height={600}
-                      width={600}
-                      className="w-full h-full"
-                    />
+                    <Link
+                      target="_blank"
+                      href={dynamicData.copyOfDEACertificateNumber}
+                    >
+                      <Image
+                        src={dynamicData.copyOfDEACertificateNumber}
+                        alt="picture"
+                        height={600}
+                        width={600}
+                        className="w-full h-full"
+                      />
+                    </Link>
                   </div>
                 </div>
 
@@ -612,13 +619,18 @@ export function PharmacistDetails({ pharmacyId }: { pharmacyId: string }) {
                     <span className="text-yellow-200">*</span>
                   </label>
                   <div className="border border-[#ECECEC] md:h-[130px] h-[80px] w-[120px] md:w-[200px]">
-                    <Image
-                      src={dynamicData.copyOfPharmacyLicense}
-                      alt="picture"
-                      height={600}
-                      width={600}
-                      className=" w-full h-full"
-                    />
+                    <Link
+                      target="_blank"
+                      href={dynamicData.copyOfPharmacyLicense}
+                    >
+                      <Image
+                        src={dynamicData.copyOfPharmacyLicense}
+                        alt="picture"
+                        height={600}
+                        width={600}
+                        className=" w-full h-full"
+                      />
+                    </Link>
                   </div>
                 </div>
 
