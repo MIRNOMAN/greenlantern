@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import AvatarMenu from "@/components/AvatarMenu";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 interface User {
   id: string;
@@ -21,7 +21,7 @@ export default function Navbar() {
   useEffect(() => {
     const token = Cookies.get("userToken"); // Get the token from cookies
     if (!token) return;
-  
+
     const fetchUser = async () => {
       try {
         const response = await fetch("http://10.0.10.65:4563/api/v1/users", {
@@ -30,21 +30,21 @@ export default function Navbar() {
             Authorization: `Bearer ${token}`,
           },
         });
-  
+
         if (!response.ok) throw new Error("Failed to fetch user");
-  
+
         const userData = await response.json();
         setUser(userData);
       } catch (error) {
-        console.error("Error fetching user:", error);
+        console.log("Error fetching user:", error);
       }
     };
-  
+
     fetchUser();
   }, []);
 
   const handleLogout = () => {
-    Cookies.remove('userToken'); // Remove the cookie
+    Cookies.remove("userToken"); // Remove the cookie
     setUser(null);
     window.location.reload(); // Or redirect if needed
   };

@@ -80,7 +80,6 @@ export default function InputForm() {
     providingCareToPatients: string[];
     pharmacyStatePlanCredentialingStatus: string;
     sameAsMailing: boolean;
-    
   }>({
     // Contact information
     userId: decodedToken?.id,
@@ -153,7 +152,7 @@ export default function InputForm() {
     IRSLetter: null,
     copyOfYourW9: null,
   });
-  console.log(selectedFiles)
+  console.log(selectedFiles);
   const [isDragging, setIsDragging] = useState<{ [key: string]: boolean }>({
     copyOfDEACertificateNumber: false,
     copyOfPharmacyLicense: false,
@@ -396,8 +395,7 @@ export default function InputForm() {
 
       // Optionally redirect to a success page
       // window.location.href = '/submission-success';
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch {
       toast.error("Failed to submit form. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -691,11 +689,8 @@ export default function InputForm() {
                 <p className="text-sm text-gray-500">
                   Drag and drop files here
                 </p>
-            
-                  <div className="mt-2 text-sm text-amber-600">
-                    {iRSLetter}
-                  </div>
-            
+
+                <div className="mt-2 text-sm text-amber-600">{iRSLetter}</div>
               </div>
             </div>
           </div>
@@ -744,11 +739,10 @@ export default function InputForm() {
                 <p className="text-sm text-gray-500">
                   Drag and drop files here
                 </p>
-             
-                  <div className="mt-2 text-sm text-amber-600">
-                    {copyOfYourW9}
-                  </div>
-             
+
+                <div className="mt-2 text-sm text-amber-600">
+                  {copyOfYourW9}
+                </div>
               </div>
             </div>
           </div>
@@ -1251,11 +1245,10 @@ export default function InputForm() {
             </div>
             <div className="font-medium">Browse Files</div>
             <p className="text-sm text-gray-500">Drag and drop files here</p>
-          
-              <div className="mt-2 text-sm text-amber-600">
-                {copyOfDEACertificateNumber}
-              </div>
-        
+
+            <div className="mt-2 text-sm text-amber-600">
+              {copyOfDEACertificateNumber}
+            </div>
           </div>
         </div>
 
@@ -1314,11 +1307,10 @@ export default function InputForm() {
             </div>
             <div className="font-medium">Browse Files</div>
             <p className="text-sm text-gray-500">Drag and drop files here</p>
-           
-              <div className="mt-2 text-sm text-amber-600">
-                {copyOfPharmacyLicense}
-              </div>
-         
+
+            <div className="mt-2 text-sm text-amber-600">
+              {copyOfPharmacyLicense}
+            </div>
           </div>
         </div>
 

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useRef } from "react"
-import { Eye, EyeOff, Upload } from "lucide-react"
-import Link from "next/link"
-import { useRegisterMutation } from "@/redux/api/authApi"
-import { toast } from "sonner"
-import uploadFormData from "@/utils/uploadFormData"
+import type React from "react";
+import { useState, useRef } from "react";
+import { Eye, EyeOff, Upload } from "lucide-react";
+import Link from "next/link";
+import { useRegisterMutation } from "@/redux/api/authApi";
+import { toast } from "sonner";
+import uploadFormData from "@/utils/uploadFormData";
 
 export default function Register() {
   const [registerData] = useRegisterMutation();
@@ -26,7 +26,6 @@ export default function Register() {
   const [file, setFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -149,9 +148,8 @@ export default function Register() {
 
         // Dispatch the register mutation with the form data
         const response = await registerData(formDataToSend);
-       console.log(response)
+        console.log(response);
         if (response.error) {
-          console.error("Registration failed", response.error);
           toast.error("Registration failed. Please try again.");
         } else {
           // Handle successful registration (redirect, success message, etc.)
@@ -159,8 +157,7 @@ export default function Register() {
           toast.success("Sign up successful!");
           // You can also redirect or do something else after successful registration
         }
-      } catch (err) {
-        console.error("Error during registration:", err);
+      } catch {
         toast.error("An error occurred. Please try again.");
       }
     }
@@ -171,13 +168,18 @@ export default function Register() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-semibold mb-2">Sign Up</h1>
-          <p className="text-xl text-gray-600">Please enter your email and password below!</p>
+          <p className="text-xl text-gray-600">
+            Please enter your email and password below!
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* First Name */}
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="firstName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               First Name
             </label>
             <input
@@ -187,14 +189,21 @@ export default function Register() {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First name"
-              className={`w-full px-3 py-2 border ${errors.firstName ? "border-red-500" : "border-gray-300"} rounded-md border-[#ECECEC] focus:outline-none focus:ring-1 focus:ring-yellow-500`}
+              className={`w-full px-3 py-2 border ${
+                errors.firstName ? "border-red-500" : "border-gray-300"
+              } rounded-md border-[#ECECEC] focus:outline-none focus:ring-1 focus:ring-yellow-500`}
             />
-            {errors.firstName && <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>}
+            {errors.firstName && (
+              <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>
+            )}
           </div>
 
           {/* Last Name */}
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="lastName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Last Name
             </label>
             <input
@@ -204,14 +213,21 @@ export default function Register() {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Last name"
-              className={`w-full px-3 py-2 border ${errors.lastName ? "border-red-500" : "border-gray-300"} border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500`}
+              className={`w-full px-3 py-2 border ${
+                errors.lastName ? "border-red-500" : "border-gray-300"
+              } border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500`}
             />
-            {errors.lastName && <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>}
+            {errors.lastName && (
+              <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>
+            )}
           </div>
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Email address
             </label>
             <input
@@ -221,14 +237,21 @@ export default function Register() {
               value={formData.email}
               onChange={handleChange}
               placeholder="johndoe@example.com"
-              className={`w-full px-3 py-2 border ${errors.email ? "border-red-500" : "border-gray-300"} border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500`}
+              className={`w-full px-3 py-2 border ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              } border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500`}
             />
-            {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+            {errors.email && (
+              <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+            )}
           </div>
 
           {/* Phone */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Phone
             </label>
             <input
@@ -238,23 +261,39 @@ export default function Register() {
               value={formData.phone}
               onChange={handleChange}
               placeholder="+123456789"
-              className={`w-full px-3 py-2 border ${errors.phone ? "border-red-500" : "border-gray-300"} border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500`}
+              className={`w-full px-3 py-2 border ${
+                errors.phone ? "border-red-500" : "border-gray-300"
+              } border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500`}
             />
-            {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
+            {errors.phone && (
+              <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
+            )}
           </div>
 
           {/* File Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Your Image</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Upload Your Image
+            </label>
             <div
-              className={`border rounded-md p-6 text-center border-[#ECECEC] cursor-pointer ${isDragging ? "border-yellow-500 bg-yellow-50" : "border-gray-300"}`}
+              className={`border rounded-md p-6 text-center border-[#ECECEC] cursor-pointer ${
+                isDragging
+                  ? "border-yellow-500 bg-yellow-50"
+                  : "border-gray-300"
+              }`}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
               onDragOver={handleDragOver}
               onDrop={handleDrop}
               onClick={handleBrowseClick}
             >
-              <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" />
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+                accept="image/*"
+              />
               {file ? (
                 <div className="flex flex-col items-center">
                   <Upload className="h-6 w-6 text-gray-400 mb-2" />
@@ -264,7 +303,9 @@ export default function Register() {
                 <div className="flex flex-col items-center">
                   <Upload className="h-6 w-6 text-gray-400 mb-2" />
                   <p className="text-sm font-medium">Browse Files</p>
-                  <p className="text-xs text-gray-500 mt-1">Drag and drop files here</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Drag and drop files here
+                  </p>
                   <p className="text-xs">{formData.PhotoUrl}</p>
                 </div>
               )}
@@ -273,7 +314,10 @@ export default function Register() {
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               New Password
             </label>
             <div className="relative">
@@ -283,22 +327,33 @@ export default function Register() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className={`w-full px-3 py-2 border ${errors.password ? "border-red-500" : "border-gray-300"} border-[#ECECEC]  rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500 pr-10`}
+                className={`w-full px-3 py-2 border ${
+                  errors.password ? "border-red-500" : "border-gray-300"
+                } border-[#ECECEC]  rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500 pr-10`}
               />
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <EyeOff className="h-5 w-5 text-gray-400" /> : <Eye className="h-5 w-5 text-gray-400" />}
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <Eye className="h-5 w-5 text-gray-400" />
+                )}
               </button>
             </div>
-            {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password}</p>}
+            {errors.password && (
+              <p className="mt-1 text-xs text-red-500">{errors.password}</p>
+            )}
           </div>
 
           {/* Confirm Password */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Confirm Password
             </label>
             <div className="relative">
@@ -308,17 +363,27 @@ export default function Register() {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className={`w-full px-3 py-2 border ${errors.confirmPassword ? "border-red-500" : "border-gray-300"} border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500 pr-10`}
+                className={`w-full px-3 py-2 border ${
+                  errors.confirmPassword ? "border-red-500" : "border-gray-300"
+                } border-[#ECECEC] rounded-md focus:outline-none focus:ring-1 focus:ring-yellow-500 pr-10`}
               />
               <button
                 type="button"
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
-                {showConfirmPassword ? <EyeOff className="h-5 w-5 text-gray-400" /> : <Eye className="h-5 w-5 text-gray-400" />}
+                {showConfirmPassword ? (
+                  <EyeOff className="h-5 w-5 text-gray-400" />
+                ) : (
+                  <Eye className="h-5 w-5 text-gray-400" />
+                )}
               </button>
             </div>
-            {errors.confirmPassword && <p className="mt-1 text-xs text-red-500">{errors.confirmPassword}</p>}
+            {errors.confirmPassword && (
+              <p className="mt-1 text-xs text-red-500">
+                {errors.confirmPassword}
+              </p>
+            )}
           </div>
 
           {/* Submit */}

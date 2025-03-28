@@ -21,7 +21,6 @@ const uploadFormData = async (formData: FormData) => {
       throw new Error("URL not found in response");
     }
   } catch (error) {
-    console.error("Error uploading form data:", error);
     throw error; // rethrow to handle in calling function
   }
 };

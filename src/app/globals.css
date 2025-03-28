@@ -3,33 +3,33 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+  font-family: "Roboto";
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Geist';
-  src: url('/fonts/Geist-Regular.woff2') format('woff2'),
-       url('/fonts/Geist-Regular.woff') format('woff');
+  font-family: "Geist";
+  src: url("/fonts/Geist-Regular.woff2") format("woff2"),
+    url("/fonts/Geist-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-roboto: 'Roboto', sans-serif;
-  --font-geist: 'Geist', sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-geist: "Geist", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
     --font-Roboto: 'Roboto', sans-serif;
   }
-}
+} */
 
 body {
   color: var(--foreground);
